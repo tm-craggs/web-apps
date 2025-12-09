@@ -149,11 +149,23 @@ body.theme-type-dark {
     height: 26px;
 }
 
+.ios .subnavbar .subnavbar-inner .right a + a {
+    margin-left: 0;
+}
+
+.ios .subnavbar .subnavbar-inner {
+    padding-right: 0;
+}
+
 :root .theme-type-dark {
     --f7-navbar-bg-color: #232323;
     --f7-bars-bg-color-rgb: 35,35,35;
     --f7-subnavbar-bg-color: #232323;
     --f7-bars-translucent-opacity: 1;
+}
+
+.word-editor {
+    --toolbar-icons: var(--brand-word, #446995);
 }
 
 .md .word-editor {
@@ -162,10 +174,18 @@ body.theme-type-dark {
     --f7-subnavbar-height: 56px;
 }
 
+.cell-editor {
+    --toolbar-icons: var(--brand-cell, #40865c);
+}
+
 .md .cell-editor {
     --f7-navbar-bg-color: var(--background-navbar-cell, #40865c);
     --f7-subnavbar-bg-color: var(--background-navbar-cell, #40865c);
     --f7-subnavbar-height: 56px;
+}
+
+.slide-editor {
+    --toolbar-icons: var(--brand-slide, #BE664F);
 }
 
 .md .slide-editor {
@@ -178,4 +198,10 @@ body.theme-type-dark {
     --f7-navbar-bg-color: var(--background-navbar-visio, #444796);
     --f7-subnavbar-bg-color: var(--background-navbar-visio, #444796);
     --f7-subnavbar-height: 56px;
+}
+
+.icon-svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--toolbar-icons);
 }
