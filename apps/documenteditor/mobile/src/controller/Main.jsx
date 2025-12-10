@@ -1224,7 +1224,7 @@ class MainController extends Component {
             inputEl: '#calendar-target-element',
             dayNamesShort: [t('Edit.textSu'), t('Edit.textMo'), t('Edit.textTu'), t('Edit.textWe'), t('Edit.textTh'), t('Edit.textFr'), t('Edit.textSa')],
             monthNames: [t('Edit.textJanuary'), t('Edit.textFebruary'), t('Edit.textMarch'), t('Edit.textApril'), t('Edit.textMay'), t('Edit.textJune'), t('Edit.textJuly'), t('Edit.textAugust'), t('Edit.textSeptember'), t('Edit.textOctober'), t('Edit.textNovember'), t('Edit.textDecember')],
-            backdrop: !Device.isPhone,
+            backdrop: false,
             closeByBackdropClick: !Device.isPhone,
             value: [val ? new Date(val) : new Date()],
             openIn: Device.isPhone ? 'sheet' : 'popover',
