@@ -1167,7 +1167,7 @@ define([], function () {
                         elValue = selectedElements[i].get_ObjectValue();
 
                         if (elType === Asc.c_oAscTypeSelectElement.Chart) {
-                            return elValue.get_ChartProperties(); 
+                            return me.api.asc_getChartSettings();
                         }
                     }
                 }
