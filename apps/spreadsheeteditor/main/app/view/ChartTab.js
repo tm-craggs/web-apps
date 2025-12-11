@@ -77,10 +77,10 @@ define([
             '</div>' +
             '<div class="group small">' +
                 '<div class="elset">' +
-                    '<div id="chart-spin-width"></div>' +
+                    '<div id="slot-chart-spin-width"></div>' +
                 '</div>' +
                 '<div class="elset">' +
-                    '<div id="chart-spin-height"></div>' +
+                    '<div id="slot-chart-spin-height"></div>' +
                 '</div>' +
             '</div>' +
             '<div class="group small">' +
@@ -126,11 +126,11 @@ define([
             me.btnAdvancedSettings.on('click', function (btn, e) {
                 me.fireEvent('charttab:advanced');
             });
-            me.spnWidth.on('change', function () {
-                me.fireEvent('charttab:widthchange');
+            me.spnWidth.on('change', function (field, oldvalue, newValue, eOpts) {
+                me.fireEvent('charttab:widthchange', [field, oldvalue, newValue, eOpts]);
             });
-            me.spnHeight.on('change',function () {
-                me.fireEvent('charttab:heightchange');
+            me.spnHeight.on('change',function (field, oldvalue, newValue, eOpts) {
+                me.fireEvent('charttab:heightchange', [field, oldvalue, newValue, eOpts]);
             });
             me.chRatio.on('change',function (field, value) {
                 me.fireEvent('charttab:ratio', [value === 'checked']);
@@ -641,7 +641,6 @@ define([
                 this.lockedControls.push(this.btnAdvancedSettings);
 
                 this.spnWidth = new Common.UI.MetricSpinner({
-                    el: $('#chart-spin-width'),
                     step: .1,
                     width: 78,
                     defaultUnit : "cm",
@@ -657,7 +656,6 @@ define([
                 this.lockedControls.push(this.spnWidth);
 
                 this.spnHeight = new Common.UI.MetricSpinner({
-                    el: $('#chart-spin-height'),
                     step: .1,
                     width: 78,
                     defaultUnit : "cm",
@@ -717,6 +715,12 @@ define([
                 var $host = this.$el;
                 var me = this;
 
+                var _injectComponent = function (id, cmp) {
+                    Common.Utils.injectComponent($host.findById(id), cmp);
+                };
+
+                _injectComponent('#slot-chart-spin-height', this.spnHeight);
+                _injectComponent('#slot-chart-spin-width', this.spnWidth);
                 this.btnChartElements && this.btnChartElements.render($host.find('#slot-btn-chart-elements'));
                 this.btnChartType && this.btnChartType.render($host.find('#slot-btn-chart-type'));
                 this.btnSelectData && this.btnSelectData.render($host.find('#slot-btn-select-data'));

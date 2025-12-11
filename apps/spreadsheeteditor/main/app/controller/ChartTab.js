@@ -138,11 +138,9 @@ define([
         },
 
         ChangeSettings: function(props) {
-            if (this._initSettings) {
-                this.updateMetricUnit();
-                this.spinners.push(this.view.spnWidth);
-                this.spinners.push(this.view.spnHeight);
-            }
+            setTimeout(() => {
+                this.createDelayedElements();
+            }, 0)
 
             if (this._isEditType) {
                 this._props = props;
@@ -272,6 +270,14 @@ define([
             }
         },
 
+        createDelayedElements: function () {
+            if (this.spinners.length === 0) {
+                this.spinners.push(this.view.spnWidth);
+                this.spinners.push(this.view.spnHeight);
+            }
+            this.updateMetricUnit();
+        },
+
         updateMetricUnit: function() {
             if (this.spinners) {
                 for (var i=0; i<this.spinners.length; i++) {
@@ -390,7 +396,7 @@ define([
         onWidthChange: function(field, newValue, oldValue, eOpts){
             var w = field.getNumberValue();
             var h = this.view.spnHeight.getNumberValue();
-            if (this.view.chRatio.getValue()) {
+            if (this.view.chRatio.getValue() === 'checked') {
                 h = w/this._nRatio;
                 if (h>this.view.spnHeight.options.maxValue) {
                     h = this.view.spnHeight.options.maxValue;
@@ -408,8 +414,8 @@ define([
         },
 
         onHeightChange: function(field, newValue, oldValue, eOpts){
-            var h = field.getNumberValue(), w = this.spnWidth.getNumberValue();
-            if (this.view.chRatio.getValue()) {
+            var h = field.getNumberValue(), w = this.view.spnWidth.getNumberValue();
+            if (this.view.chRatio.getValue() === 'checked') {
                 w = h * this._nRatio;
                 if (w>this.view.spnWidth.options.maxValue) {
                     w = this.view.spnWidth.options.maxValue;
