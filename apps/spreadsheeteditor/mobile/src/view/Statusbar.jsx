@@ -190,7 +190,7 @@ const PopoverAllList = (props) => {
     };
 
     return (
-        <Popover id="idx-all-list" backdrop={false} closeByOutsideClick={true} className="all-list" onPopoverOpen={onScrollList}>
+        <Popover id="idx-all-list" className="all-list" onPopoverOpen={onScrollList}>
             <PageAllList sheets={sheets} onTabListClick={onTabListClick}/>
         </Popover>
     )

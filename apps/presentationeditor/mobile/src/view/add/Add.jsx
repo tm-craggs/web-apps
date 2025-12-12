@@ -80,7 +80,7 @@ const AddView = () => {
 
     return (
         !Device.phone ?
-            <Popover id="add-popover" className="popover__titled" backdrop={false} closeByOutsideClick={true} onPopoverClosed={() => mainContext.closeOptions('add')}>
+            <Popover id="add-popover" className="popover__titled" closeByOutsideClick={false} onPopoverClosed={() => mainContext.closeOptions('add')}>
                 <View routes={routes} url='/adding-page/' style={{ height: '410px' }}>
                     <AddingPage />
                 </View>

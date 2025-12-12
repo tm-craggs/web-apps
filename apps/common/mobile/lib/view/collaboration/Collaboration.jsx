@@ -83,12 +83,12 @@ const CollaborationView = props => {
 
     return (
         !Device.phone ?
-            <Popover id="coauth-popover" className="popover__titled" backdrop={false} onPopoverClosed={() => props.closeOptions('coauth')} closeByOutsideClick={true}>
+            <Popover id="coauth-popover" className="popover__titled" onPopoverClosed={() => props.closeOptions('coauth')} closeByOutsideClick={false}>
                 <View style={{height: '430px'}} routes={routes} url={initUrl}>
                     <CollaborationPage />
                 </View>
             </Popover> :
-            <Sheet className="coauth__sheet" backdrop={false} onSheetClosed={() => props.closeOptions('coauth')}>
+            <Sheet className="coauth__sheet" onSheetClosed={() => props.closeOptions('coauth')}>
                 <View routes={routes} url={initUrl}>
                     <CollaborationPage />
                 </View>

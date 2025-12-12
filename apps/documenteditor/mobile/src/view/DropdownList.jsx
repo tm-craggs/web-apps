@@ -134,7 +134,7 @@ class DropdownListView extends Component {
     render() {
         return (
             Device.isPhone ? 
-                <Popup id="dropdown-list-popup" className="dropdown-list-popup" backdrop={false} closeByOutsideClick={true} swipeToClose={true} onPopupClosed={() => this.props.closeModal()}> 
+                <Popup id="dropdown-list-popup" className="dropdown-list-popup" closeByOutsideClick={true} swipeToClose={true} onPopupClosed={() => this.props.closeModal()}> 
                     <PageDropdownList
                         listItems={this.props.listItems}
                         onChangeItemList={this.props.onChangeItemList}
@@ -147,7 +147,7 @@ class DropdownListView extends Component {
                     />
                 </Popup>
             : 
-                <Popover id="dropdown-list-popover" className="popover__titled" backdrop={false} closeByOutsideClick={true} onPopoverClosed={() => this.props.closeModal()}>
+                <Popover id="dropdown-list-popover" className="popover__titled" closeByOutsideClick={true} onPopoverClosed={() => this.props.closeModal()}>
                     <PageDropdownList
                         listItems={this.props.listItems}
                         onChangeItemList={this.props.onChangeItemList}
