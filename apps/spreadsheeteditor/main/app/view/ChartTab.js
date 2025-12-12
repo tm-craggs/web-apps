@@ -540,7 +540,6 @@ define([
                     iconCls: 'toolbar__icon btn-menu-chart',
                     caption: me.capChartType,
                     lock        : [_set.lostConnect, _set.coAuth, _set.editCell, _set.coAuthText, _set.wsLock,],
-                    menu: true,
                     dataHint    : '1',
                     dataHintDirection: 'bottom',
                     dataHintOffset: 'small'
@@ -730,7 +729,7 @@ define([
                 this.chRatio && this.chRatio.render($host.find('#slot-chk-ratio'));
                 this.lblWidth && this.lblWidth.render($host.find('#slot-lbl-width'));
                 this.lblHeight && this.lblHeight.render($host.find('#slot-lbl-height'));
-                this.chartStyles.render(this.$el.find('#slot-field-chart-styles'));
+                this.chartStyles && this.chartStyles.render($host.find('#slot-field-chart-styles'));
                 return this.$el;
             },
 

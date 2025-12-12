@@ -328,12 +328,41 @@ define([
                         styleChanged = true;
                     }
 
+                    if (color) {
+                        this.MarkersColor = (color.asc_getType() == Asc.c_oAscColor.COLOR_TYPE_SCHEME) ?
+                            {color: Common.Utils.ThemeColor.getHexColor(color.asc_getR(), color.asc_getG(), color.asc_getB()), effectValue: color.asc_getValue() } :
+                            Common.Utils.ThemeColor.getHexColor(color.asc_getR(), color.asc_getG(), color.asc_getB());
+
+                        var type1 = typeof(this.MarkersColor),
+                            type2 = typeof(this._state.MarkersColor);
+                        if ( (type1 !== type2) || (type1=='object' && (this.MarkersColor.effectValue!==this._state.MarkersColor.effectValue || this._state.MarkersColor.color.indexOf(this.MarkersColor.color)<0)) ||
+                            (type1!='object' && (this._state.MarkersColor.indexOf(this.MarkersColor)<0))) {
+
+                            this._state.MarkersColor = this.MarkersColor;
+                            styleChanged = true;
+                        }
+                    }
+
                     point = props.asc_getHighPoint();
                     color = props.asc_getColorHigh();
                     if ( this._state.HighPoint!==point ) {
                         this.view.chHighPoint.setValue((point !== null && point !== undefined) ? point : 'indeterminate', true);
                         this._state.HighPoint=point;
                         styleChanged = true;
+                    }
+                    if (color) {
+                        this.HighColor = (color.asc_getType() == Asc.c_oAscColor.COLOR_TYPE_SCHEME) ?
+                            {color: Common.Utils.ThemeColor.getHexColor(color.asc_getR(), color.asc_getG(), color.asc_getB()), effectValue: color.asc_getValue() } :
+                            Common.Utils.ThemeColor.getHexColor(color.asc_getR(), color.asc_getG(), color.asc_getB());
+
+                        var type1 = typeof(this.HighColor),
+                            type2 = typeof(this._state.HighColor);
+                        if ( (type1 !== type2) || (type1=='object' && (this.HighColor.effectValue!==this._state.HighColor.effectValue || this._state.HighColor.color.indexOf(this.HighColor.color)<0)) ||
+                            (type1!='object' && (this._state.HighColor.indexOf(this.HighColor)<0))) {
+
+                            this._state.HighColor = this.HighColor;
+                            styleChanged = true;
+                        }
                     }
 
                     point = props.asc_getLowPoint();
@@ -343,6 +372,20 @@ define([
                         this._state.LowPoint=point;
                         styleChanged = true;
                     }
+                    if (color) {
+                        this.LowColor = (color.asc_getType() == Asc.c_oAscColor.COLOR_TYPE_SCHEME) ?
+                            {color: Common.Utils.ThemeColor.getHexColor(color.asc_getR(), color.asc_getG(), color.asc_getB()), effectValue: color.asc_getValue() } :
+                            Common.Utils.ThemeColor.getHexColor(color.asc_getR(), color.asc_getG(), color.asc_getB());
+
+                        var type1 = typeof(this.LowColor),
+                            type2 = typeof(this._state.LowColor);
+                        if ( (type1 !== type2) || (type1=='object' && (this.LowColor.effectValue!==this._state.LowColor.effectValue || this._state.LowColor.color.indexOf(this.LowColor.color)<0)) ||
+                            (type1!='object' && (this._state.LowColor.indexOf(this.LowColor)<0))) {
+
+                            this._state.LowColor = this.LowColor;
+                            styleChanged = true;
+                        }
+                    }
 
                     point = props.asc_getFirstPoint();
                     color = props.asc_getColorFirst();
@@ -350,6 +393,20 @@ define([
                         this.view.chFirstPoint.setValue((point !== null && point !== undefined) ? point : 'indeterminate', true);
                         this._state.FirstPoint=point;
                         styleChanged = true;
+                    }
+                    if (color) {
+                        this.FirstColor = (color.asc_getType() == Asc.c_oAscColor.COLOR_TYPE_SCHEME) ?
+                            {color: Common.Utils.ThemeColor.getHexColor(color.asc_getR(), color.asc_getG(), color.asc_getB()), effectValue: color.asc_getValue() } :
+                            Common.Utils.ThemeColor.getHexColor(color.asc_getR(), color.asc_getG(), color.asc_getB());
+
+                        var type1 = typeof(this.FirstColor),
+                            type2 = typeof(this._state.FirstColor);
+                        if ( (type1 !== type2) || (type1=='object' && (this.FirstColor.effectValue!==this._state.FirstColor.effectValue || this._state.FirstColor.color.indexOf(this.FirstColor.color)<0)) ||
+                            (type1!='object' && (this._state.FirstColor.indexOf(this.FirstColor)<0))) {
+
+                            this._state.FirstColor = this.FirstColor;
+                            styleChanged = true;
+                        }
                     }
 
                     point = props.asc_getLastPoint();
@@ -359,6 +416,20 @@ define([
                         this._state.LastPoint=point;
                         styleChanged = true;
                     }
+                    if (color) {
+                        this.LastColor = (color.asc_getType() == Asc.c_oAscColor.COLOR_TYPE_SCHEME) ?
+                            {color: Common.Utils.ThemeColor.getHexColor(color.asc_getR(), color.asc_getG(), color.asc_getB()), effectValue: color.asc_getValue() } :
+                            Common.Utils.ThemeColor.getHexColor(color.asc_getR(), color.asc_getG(), color.asc_getB());
+
+                        var type1 = typeof(this.LastColor),
+                            type2 = typeof(this._state.LastColor);
+                        if ( (type1 !== type2) || (type1=='object' && (this.LastColor.effectValue!==this._state.LastColor.effectValue || this._state.LastColor.color.indexOf(this.LastColor.color)<0)) ||
+                            (type1!='object' && (this._state.LastColor.indexOf(this.LastColor)<0))) {
+
+                            this._state.LastColor = this.LastColor;
+                            styleChanged = true;
+                        }
+                    }
 
                     point = props.asc_getNegativePoint();
                     color = props.asc_getColorNegative();
@@ -366,6 +437,20 @@ define([
                         this.view.chNegativePoint.setValue((point !== null && point !== undefined) ? point : 'indeterminate', true);
                         this._state.NegativePoint=point;
                         styleChanged = true;
+                    }
+                    if (color) {
+                        this.NegativeColor = (color.asc_getType() == Asc.c_oAscColor.COLOR_TYPE_SCHEME) ?
+                            {color: Common.Utils.ThemeColor.getHexColor(color.asc_getR(), color.asc_getG(), color.asc_getB()), effectValue: color.asc_getValue() } :
+                            Common.Utils.ThemeColor.getHexColor(color.asc_getR(), color.asc_getG(), color.asc_getB());
+
+                        var type1 = typeof(this.NegativeColor),
+                            type2 = typeof(this._state.NegativeColor);
+                        if ( (type1 !== type2) || (type1=='object' && (this.NegativeColor.effectValue!==this._state.NegativeColor.effectValue || this._state.NegativeColor.color.indexOf(this.NegativeColor.color)<0)) ||
+                            (type1!='object' && (this._state.NegativeColor.indexOf(this.NegativeColor)<0))) {
+
+                            this._state.NegativeColor = this.NegativeColor;
+                            styleChanged = true;
+                        }
                     }
 
                     if (styleChanged)
@@ -404,7 +489,7 @@ define([
         },
 
         openAdvancedSettings: function() {
-            // if (this.linkAdvanced.hasClass('disabled') || !Common.Controllers.LaunchController.isScriptLoaded()) return;
+            if (!Common.Controllers.LaunchController.isScriptLoaded()) return;
 
             var me = this;
             var win, props;
