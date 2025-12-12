@@ -1161,10 +1161,9 @@ define([], function () {
             me.getCurrentChartProps = function () {
                 var selectedElements = me.api.getSelectedElements();
                 if (selectedElements && selectedElements.length > 0) {
-                    var elType, elValue;
+                    var elType;
                     for (var i = selectedElements.length - 1; i >= 0; i--) {
                         elType = selectedElements[i].get_ObjectType();
-                        elValue = selectedElements[i].get_ObjectValue();
 
                         if (elType === Asc.c_oAscTypeSelectElement.Chart) {
                             return elValue.get_ChartProperties(); 
