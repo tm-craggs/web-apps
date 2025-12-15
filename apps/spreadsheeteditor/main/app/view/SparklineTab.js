@@ -502,7 +502,7 @@ define([
                     Common.Utils.injectComponent($host.findById(id), cmp);
                 };
                 _injectComponent('#slot-spin-line-weight', this.cmbBorderSize);
-                _injectComponent('#id-spark-combo-style', this.cmbSparkStyle);
+                this.cmbSparkStyle && this.cmbSparkStyle.render($host.find('#id-spark-combo-style'));
                 this.lblLineWeight && this.lblLineWeight.render($host.find('#slot-lbl-line-weight'));
                 this.btnLineType && this.btnLineType.render($host.find('#slot-btn-sparkline-line'));
                 this.btnColumnType && this.btnColumnType.render($host.find('#slot-btn-sparkline-column'));

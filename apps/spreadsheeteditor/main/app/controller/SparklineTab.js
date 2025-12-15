@@ -549,8 +549,11 @@ define([
                             data    : i
                         });
                     }
+
                     stylesStore.reset(stylearray, {silent: false});
-                    this.view.cmbSparkStyle.fillComboView(stylesStore.at(selectedIdx<0 ? 0 : selectedIdx), selectedIdx>-1);
+                    var rec = this.view.cmbSparkStyle.menuPicker.store.findWhere({'id': stylesStore.at(selectedIdx<0 ? 0 : selectedIdx).get('id')});
+                    this.view.cmbSparkStyle.fieldPicker.selectRecord(rec);
+                    // this.view.cmbSparkStyle.fillComboView(stylesStore.at(selectedIdx<0 ? 0 : selectedIdx), selectedIdx>-1);
                 }
             }
         },
