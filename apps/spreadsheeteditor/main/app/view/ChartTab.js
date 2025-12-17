@@ -55,7 +55,7 @@ define([
                 '<span class="btn-slot text x-huge" id="slot-btn-switch-rowscols"></span>' +
             '</div>' +
             '<div class="separator long"></div>' +
-            '<div class="group flex small" id="slot-field-chart-styles" style="min-width: 100px; width: 448px" data-group-width="448px">' +
+            '<div class="group flex small" id="slot-field-chart-styles" style="min-width: 100px; width: 448px;" data-group-width="448px">' +
             '</div>' +
             '<div class="separator long separator-chart-styles"></div>' +
             '<div class="group small">' +
@@ -570,7 +570,7 @@ define([
 
                 this.chartStyles = new Common.UI.ComboDataView({
                     cls             : 'combo-chart-template',
-                    style           : 'min-width: 90px; max-width: 496px;',
+                    style           : 'min-width: 90px; width: 438; max-width: 438px;',
                     enableKeyEvents : true,
                     itemWidth       : 50,
                     itemHeight      : 50,
@@ -603,7 +603,7 @@ define([
                             if (Common.UI.isRTL()) {
                                 offset = cmp.openButton.$el.width() + parseFloat($(cmp.$el.find('.combo-dataview').get(0)).css('padding-left'));
                             }
-                            menu.setOffset(Common.UI.isRTL() ? offset : Math.min(offset, 0));
+                            menu.setOffset(Common.UI.isRTL() ? offset - 2 : Math.min(offset, 0));
 
                             menu.cmpEl.css({
                                 'width': menuWidth,

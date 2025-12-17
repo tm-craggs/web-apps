@@ -279,7 +279,7 @@ define([
                     lock: [_set.lostConnect, _set.coAuth, _set.editCell, _set.sparkLocked, _set.wsLock,],
                     enableKeyEvents: true,
                     cls: 'combo-chart-template',
-                    style: 'min-width: 90px; max-width: 496px;',
+                    style: 'min-width: 90px; width: 438; max-width: 438px;',
                     delayRenderTips: true,
                     autoWidth: true,
                     beforeOpenHandler: function(e) {
@@ -307,7 +307,7 @@ define([
                             if (Common.UI.isRTL()) {
                                 offset = cmp.openButton.$el.width() + parseFloat($(cmp.$el.find('.combo-dataview').get(0)).css('padding-left'));
                             }
-                            menu.setOffset(Common.UI.isRTL() ? offset : Math.min(offset, 0));
+                            menu.setOffset(Common.UI.isRTL() ? offset - 2 : Math.min(offset, 0));
 
                             menu.cmpEl.css({
                                 'width': menuWidth,
