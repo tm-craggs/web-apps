@@ -2084,7 +2084,7 @@ define([
                         return false;
                     },
                     'shift+f3': function(e) {
-                        if (me.editMode && !me.toolbar.btnInsertFormula.isDisabled()) {
+                        if (me.editMode && !me.toolbar.btnInsertFormula.isDisabled() && !me.getApplication().getController('LeftMenu').leftMenu.menuFile.isVisible()) {
                             var controller = me.getApplication().getController('FormulaDialog');
                             if (controller) {
                                 controller.showDialog();
