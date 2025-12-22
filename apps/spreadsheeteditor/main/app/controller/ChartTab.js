@@ -64,7 +64,6 @@ define([
             };
             this._nRatio = 1;
             this.spinners = [];
-            this.chPoints = [];
             this.lockedControls = [];
             this._locked = false;
             this.defColor = {color: '4f81bd', effectId: 24};

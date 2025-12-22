@@ -527,7 +527,7 @@ define([
                     cls: 'btn-toolbar x-huge icon-top',
                     iconCls: 'toolbar__icon btn-big-chart-elements',
                     caption: me.capChartElements,
-                    lock: [_set.sheetLock, _set.lostConnect, _set.coAuth, _set.editCell, _set.coAuthText, _set.wsLock,],
+                    lock: [_set.lostConnect, _set.selRangeEdit, _set.coAuthText, _set.wsLockFormatFill],
                     dataHint: '1',
                     dataHintDirection: 'bottom',
                     dataHintOffset: 'small',
@@ -539,7 +539,7 @@ define([
                     cls: 'btn-toolbar',
                     iconCls: 'toolbar__icon btn-menu-chart',
                     caption: me.capChartType,
-                    lock        : [_set.lostConnect, _set.coAuth, _set.editCell, _set.coAuthText, _set.wsLock,],
+                    lock        : [_set.lostConnect, _set.selRangeEdit, _set.coAuthText, _set.wsLockFormatFill],
                     dataHint    : '1',
                     dataHintDirection: 'bottom',
                     dataHintOffset: 'small'
@@ -550,7 +550,7 @@ define([
                     cls: 'btn-toolbar x-huge icon-top',
                     iconCls: 'toolbar__icon btn-big-select-range',
                     caption: me.capSelectData,
-                    lock        : [_set.lostConnect, _set.coAuth, _set.editCell, _set.coAuthText, _set.wsLock,],
+                    lock        : [_set.lostConnect, _set.selRangeEdit, _set.coAuthText, _set.wsLockFormatFill],
                     dataHint    : '1',
                     dataHintDirection: 'bottom',
                     dataHintOffset: 'small'
@@ -561,7 +561,7 @@ define([
                     cls: 'btn-toolbar x-huge icon-top',
                     iconCls: 'toolbar__icon btn-big-switch-row-column',
                     caption: me.capRowCol,
-                    lock        : [_set.lostConnect, _set.coAuth, _set.editCell, _set.noRange, _set.coAuthText, _set.wsLock,],
+                    lock        : [_set.lostConnect, _set.selRangeEdit, _set.noRange, _set.coAuthText, _set.wsLockFormatFill],
                     dataHint    : '1',
                     dataHintDirection: 'bottom',
                     dataHintOffset: 'small'
@@ -577,7 +577,7 @@ define([
                     menuMaxHeight   : 300,
                     groups          : new Common.UI.DataViewGroupStore(),
                     autoWidth       : true,
-                    lock: [_set.editCell, _set.lostConnect, _set.coAuth, _set.wsLock, _set.noStyles, _set.coAuthText],
+                    lock: [_set.selRangeEdit, _set.lostConnect, _set.wsLockFormatFill, _set.noStyles, _set.coAuthText],
                     beforeOpenHandler: function(e) {
                         var cmp = this,
                             menu = cmp.openButton.menu,
@@ -621,7 +621,7 @@ define([
                     cls: 'btn-toolbar x-huge icon-top',
                     iconCls: 'toolbar__icon btn-3d-rotation',
                     caption: me.cap3DRotation,
-                    lock        : [_set.lostConnect, _set.coAuth, _set.editCell, _set.coAuthText, _set.wsLock,],
+                    lock        : [_set.lostConnect, _set.selRangeEdit, _set.coAuthText, _set.wsLockFormatFill],
                     dataHint    : '1',
                     dataHintDirection: 'bottom',
                     dataHintOffset: 'small'
@@ -632,7 +632,7 @@ define([
                     cls: 'btn-toolbar',
                     iconCls: 'toolbar__icon btn-settings',
                     caption: me.capAdvancedSettings,
-                    lock        : [_set.lostConnect, _set.coAuth, _set.editCell, _set.SeveralCharts, _set.coAuthText, _set.wsLock,],
+                    lock        : [_set.lostConnect, _set.selRangeEdit, _set.SeveralCharts, _set.coAuthText, _set.wsLockFormatFill],
                     dataHint    : '1',
                     dataHintDirection: 'bottom',
                     dataHintOffset: 'small'
@@ -643,7 +643,7 @@ define([
                     step: .1,
                     width: 78,
                     defaultUnit : "cm",
-                    lock: [_set.lostConnect, _set.coAuth, _set.editCell, _set.coAuthText, _set.wsLock,],
+                    lock: [_set.lostConnect, _set.selRangeEdit, _set.coAuthText, _set.wsLockFormatFill],
                     value: '3 cm',
                     maxValue: 55.88,
                     minValue: 0,
@@ -658,7 +658,7 @@ define([
                     step: .1,
                     width: 78,
                     defaultUnit : "cm",
-                    lock: [_set.lostConnect, _set.coAuth, _set.editCell, _set.coAuthText, _set.wsLock,],
+                    lock: [_set.lostConnect, _set.selRangeEdit, _set.coAuthText, _set.wsLockFormatFill],
                     value: '3 cm',
                     maxValue: 55.88,
                     minValue: 0,
@@ -672,7 +672,7 @@ define([
                 this.chRatio = new Common.UI.CheckBox({
                     labelText: me.textLockRation,
                     value: true,
-                    lock        : [_set.lostConnect, _set.editCell, _set.coAuthText, _set.wsLock,],
+                    lock        : [_set.lostConnect, _set.selRangeEdit, _set.coAuthText, _set.wsLockFormatFill],
                     dataHint    : '1',
                     dataHintDirection: 'left',
                     dataHintOffset: 'small'
@@ -681,13 +681,13 @@ define([
 
                 this.lblWidth = new Common.UI.Label({
                     caption: me.textWidth,
-                    lock: [_set.lostConnect, _set.coAuth, _set.editCell, _set.coAuthText, _set.wsLock,],
+                    lock: [_set.lostConnect, _set.selRangeEdit, _set.coAuthText, _set.wsLockFormatFill],
                 });
                 this.lockedControls.push(this.lblWidth);
 
                 this.lblHeight = new Common.UI.Label({
                     caption: me.textHeight,
-                    lock: [_set.lostConnect, _set.coAuth, _set.editCell, _set.coAuthText, _set.wsLock,],
+                    lock: [_set.lostConnect, _set.selRangeEdit, _set.coAuthText, _set.wsLockFormatFill],
                 });
                 this.lockedControls.push(this.lblHeight);
 

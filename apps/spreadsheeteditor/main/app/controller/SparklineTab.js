@@ -57,8 +57,6 @@ define([
                 SparkType: -1,
                 SparkStyle: 1,
                 DisabledControls: false,
-                SparkType: -1,
-                SparkStyle: 1,
                 LineWeight: 1,
                 MarkersPoint: false,
                 HighPoint: false,
