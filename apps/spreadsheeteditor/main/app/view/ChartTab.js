@@ -135,6 +135,9 @@ define([
             me.chRatio.on('change',function (field, value) {
                 me.fireEvent('charttab:ratio', [value === 'checked']);
             });
+            me.chartStyles.on('click', function (combo, record) {
+                me.fireEvent('charttab:selectstyle', [combo, record]);
+            })
         }
 
         return {
@@ -572,6 +575,7 @@ define([
                     cls             : 'combo-chart-template',
                     style           : 'min-width: 90px; width: 438; max-width: 438px;',
                     enableKeyEvents : true,
+                    delayRenderTips : true,
                     itemWidth       : 50,
                     itemHeight      : 50,
                     menuMaxHeight   : 300,
@@ -616,6 +620,9 @@ define([
                     dataHint: '1',
                     dataHintDirection: 'bottom',
                     dataHintOffset: '-16, 0'
+                });
+                this.chartStyles.openButton.menu.on('show:after', function () {
+                    me.chartStyles.menuPicker.scroller.update({alwaysVisibleY: true});
                 });
                 this.lockedControls.push(this.chartStyles);
 

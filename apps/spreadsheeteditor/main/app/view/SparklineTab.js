@@ -367,7 +367,7 @@ define([
                     lock: [_set.editCell, _set.lostConnect, _set.coAuth, _set.sparkLocked, _set.wsLock,],
                     caption: this.capAdvancedSettings,
                     dataHint: '1',
-                    dataHintDirection: 'bottom',
+                    dataHintDirection: 'left',
                     dataHintOffset: '0, -8'
                 });
                 this.lockedControls.push(this.btnAdvancedSettings);
@@ -384,7 +384,7 @@ define([
                             ]
                     }),
                     dataHint: '1',
-                    dataHintDirection: 'bottom',
+                    dataHintDirection: 'left',
                     dataHintOffset: '0, -8'
                 });
                 this.lockedControls.push(this.btnClear);

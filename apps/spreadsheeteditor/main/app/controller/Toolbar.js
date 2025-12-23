@@ -2966,18 +2966,19 @@ define([
             toolbar.lockToolbar(Common.enumLock.pageBreakLock, this.api.asc_GetPageBreaksDisableType(this.api.asc_getActiveWorksheetIndex())===Asc.c_oAscPageBreaksDisableType.all, {array: [toolbar.btnPageBreak]});
 
             var in_chart = (selectionType == Asc.c_oAscSelectionType.RangeChart || selectionType == Asc.c_oAscSelectionType.RangeChartText);
-            if (in_chart !== this._state.in_chart) {
-                toolbar.btnInsertChart.updateHint(in_chart ? toolbar.tipChangeChart : toolbar.tipInsertChart);
-                this._state.in_chart = in_chart;
-            }
 
-            if (this._state.inchart !== in_chart) {
-                if ( !in_chart && this.toolbar.isTabActive('charttab') )
+            if (in_chart !== this._state.in_chart) {
+                toolbar.btnInsertChart.updateHint(
+                    in_chart ? toolbar.tipChangeChart : toolbar.tipInsertChart
+                );
+
+                if (!in_chart && this.toolbar.isTabActive('charttab'))
                     this.toolbar.setTab('home');
                 this.toolbar.setVisible('charttab', !!in_chart);
                 if (in_chart && this._state.showChartTab)
                     this.toolbar.setTab('charttab');
-                this._state.inchart = in_chart;
+
+                this._state.in_chart = in_chart;
             }
 
             var in_sparkline = !!info.asc_getSparklineInfo();
@@ -4615,7 +4616,7 @@ define([
                         me.toolbar.btnsTableDesign = tabledesignbuttons;
                     }
 
-                    tab = {caption: me.toolbar.textTabChart, action: 'charttab', extcls: config.isEdit ? 'canedit' : '', layoutname: 'toolbar-charttab', dataHintTitle: 'V', aux: true};
+                    tab = {caption: me.toolbar.textTabChart, action: 'charttab', extcls: config.isEdit ? 'canedit' : '', layoutname: 'toolbar-charttab', dataHintTitle: 'A', aux: true};
                     var charttab = me.getApplication().getController('ChartTab');
                     charttab.setApi(me.api).setConfig({toolbar: me});
                     var view = charttab.getView('ChartTab');
@@ -4627,7 +4628,7 @@ define([
                         Array.prototype.push.apply(me.toolbar.lockControls, chartbuttons);
                     }
 
-                    tab = {caption: me.toolbar.textTabSparkline, action: 'sparklinetab', extcls: config.isEdit ? 'canedit' : '', layoutname: 'toolbar-sparklinetab', dataHintTitle: 'V', aux: true};
+                    tab = {caption: me.toolbar.textTabSparkline, action: 'sparklinetab', extcls: config.isEdit ? 'canedit' : '', layoutname: 'toolbar-sparklinetab', dataHintTitle: 'A', aux: true};
                     var sparklinetab = me.getApplication().getController('SparklineTab');
                     sparklinetab.setApi(me.api).setConfig({toolbar: me});
                     var view = sparklinetab.getView('SparklineTab');

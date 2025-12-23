@@ -82,6 +82,7 @@ define([
                     'charttab:heightchange':             _.bind(this.onHeightChange, this),
                     'charttab:ratio':                    _.bind(this.onToggleRatio, this),
                     'charttab:3dsettings':               _.bind(this.open3DSettings, this),
+                    'charttab:selectstyle':              _.bind(this.onSelectStyle, this),
                 },
                 'Toolbar': {
                     'tab:active':                        _.bind(this.onActiveTab, this)
@@ -442,13 +443,6 @@ define([
         updateChartStyles: function(styles) {
             var me = this;
             this._isChartStylesChanged = true;
-
-            this.view.chartStyles.render($('#chart-combo-style'));
-            this.view.chartStyles.on('click', _.bind(this.onSelectStyle, this));
-            this.view.chartStyles.openButton.menu.on('show:after', function () {
-                me.view.chartStyles.menuPicker.scroller.update({alwaysVisibleY: true});
-            });
-            this.view.lockedControls.push(this.view.chartStyles);
 
             if (styles && styles.length>0){
                 var stylesStore = this.view.chartStyles.menuPicker.store;
