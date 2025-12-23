@@ -2107,7 +2107,7 @@ define([
             setMode: function (mode) {
                 if (mode.isDisconnected) {
                     this.lockToolbar(Common.enumLock.lostConnect, true);
-                    this.lockToolbar( Common.enumLock.lostConnect, true, {array:[this.btnUndo,this.btnRedo,this.btnSave]} );
+                    this.lockToolbar( Common.enumLock.lostConnect, true, {array:[this.f,this.btnRedo,this.btnSave]} );
                     if ( this.synchTooltip )
                         this.synchTooltip.hide();
                     if (!mode.enableDownload)
