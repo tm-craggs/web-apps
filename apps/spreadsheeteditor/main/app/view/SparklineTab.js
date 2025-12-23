@@ -581,11 +581,13 @@ define([
                 var cmp = this.cmbSparkStyle;
                 if (cmp && cmp.cmpEl) {
                     var itemEl = $(cmp.cmpEl.find('.dataview.inner .style').get(0)).parent(),
+                        fieldpicker = cmp.cmpEl.find('.field-picker'),
                         itemMargin = parseFloat(itemEl.css('margin-left')) + parseFloat(itemEl.css('margin-right')),
                         itemWidth = itemEl.is(':visible') ? parseFloat(itemEl.css('width')) :
-                            (cmp.itemWidth + parseFloat(itemEl.css('padding-left')) + parseFloat(itemEl.css('padding-right')) +
-                                parseFloat(itemEl.css('border-left-width')) + parseFloat(itemEl.css('border-right-width'))),
-                        maxwidth = (itemWidth + itemMargin) * cmp.options.maxMenuColumn + parseFloat(cmp.cmpEl.find('.field-picker').css('padding-right')) + cmp.openButton.$el.width();
+                                    (cmp.itemWidth + parseFloat(itemEl.css('padding-left')) + parseFloat(itemEl.css('padding-right')) +
+                                    parseFloat(itemEl.css('border-left-width')) + parseFloat(itemEl.css('border-right-width'))),
+                        maxwidth = (itemWidth + itemMargin) * cmp.options.maxMenuColumn + parseFloat(fieldpicker.css('padding-right')) +
+                                    parseFloat(fieldpicker.css('padding-left')) + cmp.openButton.$el.width();
                     cmp.cmpEl.css('max-width', maxwidth + 'px');
                     cmp.startCheckSize();
                 }
