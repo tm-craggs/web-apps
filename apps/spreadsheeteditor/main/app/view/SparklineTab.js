@@ -276,6 +276,8 @@ define([
                     itemWidth: 50,
                     itemHeight: 50,
                     menuMaxHeight: 300,
+                    minMenuColumn   : 6,
+                    maxMenuColumn   : 7,
                     lock: [_set.lostConnect, _set.coAuth, _set.editCell, _set.sparkLocked, _set.wsLock,],
                     enableKeyEvents: true,
                     cls: 'combo-chart-template',
@@ -285,11 +287,11 @@ define([
                     beforeOpenHandler: function(e) {
                         var cmp = this,
                             menu = cmp.openButton.menu,
-                            minMenuColumn = 6;
+                            minMenuColumn = cmp.options.minMenuColumn;
 
                         if (menu.cmpEl) {
                             var itemEl = $(cmp.cmpEl.find('.dataview.inner .style').get(0)).parent();
-                            var itemMargin = 8;
+                            var itemMargin = parseFloat(itemEl.css('margin-left')) + parseFloat(itemEl.css('margin-right'));
                             var itemWidth = itemEl.is(':visible') ? parseFloat(itemEl.css('width')) :
                                 (cmp.itemWidth + parseFloat(itemEl.css('padding-left')) + parseFloat(itemEl.css('padding-right')) +
                                 parseFloat(itemEl.css('border-left-width')) + parseFloat(itemEl.css('border-right-width')));
@@ -299,15 +301,15 @@ define([
                             columnCount = columnCount < minCount ? minCount : columnCount;
                             menu.menuAlignEl = cmp.cmpEl;
                             menu.menuAlign = 'tl-tl';
-                            var menuWidth = columnCount * (itemMargin + itemWidth) + 16, // for scroller
+                            var menuWidth = columnCount * (itemMargin + itemWidth) + 14, // for scroller
                                 buttonOffsetLeft = Common.Utils.getOffset(cmp.openButton.$el).left;
                             if (menuWidth>Common.Utils.innerWidth())
-                                menuWidth = Math.max(Math.floor((Common.Utils.innerWidth()-16)/(itemMargin + itemWidth)), 2) * (itemMargin + itemWidth) + 16;
+                                menuWidth = Math.max(Math.floor((Common.Utils.innerWidth()-14)/(itemMargin + itemWidth)), 2) * (itemMargin + itemWidth) + 14;
                             var offset = cmp.cmpEl.width() - cmp.openButton.$el.width() - Math.min(menuWidth, buttonOffsetLeft);
                             if (Common.UI.isRTL()) {
                                 offset = cmp.openButton.$el.width() + parseFloat($(cmp.$el.find('.combo-dataview').get(0)).css('padding-left'));
                             }
-                            menu.setOffset(Common.UI.isRTL() ? offset - 2 : Math.min(offset, 0));
+                            menu.setOffset(Common.UI.isRTL() ? offset : Math.min(offset, 0));
 
                             menu.cmpEl.css({
                                 'width': menuWidth,
@@ -574,6 +576,20 @@ define([
                     }
                 }, this);
             },
+
+            onThemeChanged: function() {
+                var cmp = this.cmbSparkStyle;
+                if (cmp && cmp.cmpEl) {
+                    var itemEl = $(cmp.cmpEl.find('.dataview.inner .style').get(0)).parent(),
+                        itemMargin = parseFloat(itemEl.css('margin-left')) + parseFloat(itemEl.css('margin-right')),
+                        itemWidth = itemEl.is(':visible') ? parseFloat(itemEl.css('width')) :
+                            (cmp.itemWidth + parseFloat(itemEl.css('padding-left')) + parseFloat(itemEl.css('padding-right')) +
+                                parseFloat(itemEl.css('border-left-width')) + parseFloat(itemEl.css('border-right-width'))),
+                        maxwidth = (itemWidth + itemMargin) * cmp.options.maxMenuColumn + parseFloat(cmp.cmpEl.find('.field-picker').css('padding-right')) + cmp.openButton.$el.width();
+                    cmp.cmpEl.css('max-width', maxwidth + 'px');
+                    cmp.startCheckSize();
+                }
+            }
         }
     }()), SSE.Views.SparklineTab || {}));
 });

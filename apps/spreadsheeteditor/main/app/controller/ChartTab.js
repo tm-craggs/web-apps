@@ -83,6 +83,9 @@ define([
                     'charttab:ratio':                    _.bind(this.onToggleRatio, this),
                     'charttab:3dsettings':               _.bind(this.open3DSettings, this),
                 },
+                'Toolbar': {
+                    'tab:active':                        _.bind(this.onActiveTab, this)
+                }
             });
         },
 
@@ -512,6 +515,8 @@ define([
                 this.api.asc_registerCallback('asc_onAddChartStylesPreview', _.bind(this.onAddChartStylesPreview, this));
                 this.api.asc_registerCallback('asc_onUpdateChartStyles', _.bind(this._onUpdateChartStyles, this));
                 Common.NotificationCenter.on('cells:range',                 _.bind(this.onCellsRange, this));
+                Common.NotificationCenter.on('uitheme:changed', _.bind(this.onThemeChanged, this));
+
             }
             return this;
         },
@@ -547,6 +552,7 @@ define([
         },
 
         setConfig: function(config) {
+            this.toolbar = config.toolbar;
             this.view = this.createView('ChartTab', {
                 toolbar: config.toolbar.toolbar
             });
@@ -588,6 +594,20 @@ define([
         onCellsRange: function(status) {
             this.rangeSelectionMode = (status != Asc.c_oAscSelectionDialogType.None);
         },
+
+        onActiveTab: function(tab) {
+            if (tab==='charttab' && this._themeChanged!==false) {
+                this.onThemeChanged();
+            }
+        },
+
+        onThemeChanged: function() {
+            this._themeChanged = !(this.toolbar && this.toolbar.toolbar && this.toolbar.toolbar.isTabActive('charttab'));
+            if (!this._themeChanged && this.view) {
+                this.view.onThemeChanged();
+                this.toolbar.toolbar.onThemeChanged();
+            }
+        }
 
     }, SSE.Controllers.ChartTab || {}));
 });

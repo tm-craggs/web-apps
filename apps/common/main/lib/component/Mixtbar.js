@@ -157,11 +157,7 @@ define([
                 Common.NotificationCenter.on('app:repaint', _.bind(function() {
                     this.repaintMoreBtns();
                 }, this));
-                Common.NotificationCenter.on('uitheme:changed', _.bind(function() {
-                    this.clearActiveData();
-                    this.processPanelVisible();
-                    this.repaintMoreBtns();
-                }, this));
+                Common.NotificationCenter.on('uitheme:changed', _.bind(this.onThemeChanged, this));
             },
 
             afterRender: function() {
@@ -365,7 +361,7 @@ define([
                     }
 
                     this.fireEvent('tab:active', [tab]);
-                    Common.NotificationCenter.trigger('tab:active',[tab]);
+                    Common.NotificationCenter.trigger('tab:active', tab);
                 }
             },
 
@@ -1054,6 +1050,12 @@ define([
                 for (var btn in btnsMore) {
                     btnsMore[btn] && btnsMore[btn].isActive() && btnsMore[btn].toggle(false);
                 }
+            },
+
+            onThemeChanged: function(e) {
+                this.clearActiveData();
+                this.processPanelVisible();
+                this.repaintMoreBtns();
             }
         };
     }()));

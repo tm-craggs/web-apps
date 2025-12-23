@@ -95,6 +95,9 @@ define([
                     'sparkline:bordersizechanged': _.bind(this.onBorderSizeChanged, this),
                     'sparkline:styleselect': _.bind(this.onSelectSparkStyle, this),
                 },
+                'Toolbar': {
+                    'tab:active':                        _.bind(this.onActiveTab, this)
+                }
             });
         },
 
@@ -563,6 +566,7 @@ define([
                 Common.NotificationCenter.on('api:disconnect', _.bind(this.SetDisabled, this));
                 this.api.asc_registerCallback('asc_onSelectionChanged',     _.bind(this.onSelectionChanged, this));
                 Common.NotificationCenter.on('cells:range',                 _.bind(this.onCellsRange, this));
+                Common.NotificationCenter.on('uitheme:changed', _.bind(this.onThemeChanged, this));
             }
             return this;
         },
@@ -573,6 +577,7 @@ define([
         },
 
         setConfig: function(config) {
+            this.toolbar = config.toolbar;
             this.view = this.createView('SparklineTab', {
                 toolbar: config.toolbar.toolbar
             });
@@ -605,6 +610,20 @@ define([
         onCellsRange: function(status) {
             this.rangeSelectionMode = (status != Asc.c_oAscSelectionDialogType.None);
         },
+
+        onActiveTab: function(tab) {
+            if (tab==='sparklinetab' && this._themeChanged!==false) {
+                this.onThemeChanged();
+            }
+        },
+
+        onThemeChanged: function() {
+            this._themeChanged = !(this.toolbar && this.toolbar.toolbar && this.toolbar.toolbar.isTabActive('sparklinetab'));
+            if (!this._themeChanged && this.view) {
+                this.view.onThemeChanged();
+                this.toolbar.toolbar.onThemeChanged();
+            }
+        }
 
     }, SSE.Controllers.SparklineTab || {}));
 });
