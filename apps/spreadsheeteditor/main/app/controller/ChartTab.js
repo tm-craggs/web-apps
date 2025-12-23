@@ -570,7 +570,7 @@ define([
         },
 
         onSelectionChanged: function(info) {
-            if (this.rangeSelectionMode || !this.appConfig.isEdit || !this.view) return;
+            if (this.rangeSelectionMode || !this.appConfig.isEdit || !this.view || !this.toolbar.toolbar.isTabActive('charttab')) return;
             var selectType = info.asc_getSelectionType();
             var selectedObjects = this.api.asc_getGraphicObjectProps();
             if ((selectType == Asc.c_oAscSelectionType.RangeChart || selectType == Asc.c_oAscSelectionType.RangeChartText) && selectedObjects)
@@ -590,8 +590,10 @@ define([
         },
 
         onActiveTab: function(tab) {
-            if (tab==='charttab' && this._themeChanged!==false) {
-                this.onThemeChanged();
+            if (tab==='charttab') {
+                this.onSelectionChanged(this.api.asc_getCellInfo());
+                if (this._themeChanged!==false)
+                    this.onThemeChanged();
             }
         },
 
