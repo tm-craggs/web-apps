@@ -486,11 +486,6 @@ define([
                 Common.NotificationCenter.on('app:ready', this.onAppReady.bind(this));
             },
 
-            onCheckStyleChange: function(type, stateName, field, newValue, oldValue, eOpts) {
-                var me = this;
-                me.fireEvent('tabledesigntab:stylechange', [type, stateName, newValue]);
-            },
-
             render: function (el) {
                 if ( el ) el.html( this.getPanel() );
 

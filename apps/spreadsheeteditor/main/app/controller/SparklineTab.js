@@ -78,8 +78,7 @@ define([
             this.lockedControls = [];
             this._locked = false;
             this.defColor = {color: '4f81bd', effectId: 24};
-            this.isChart = true;
-            
+
             this._noApply = false;
             this._originalProps = null;
 
@@ -96,7 +95,7 @@ define([
                     'sparkline:styleselect': _.bind(this.onSelectSparkStyle, this),
                 },
                 'Toolbar': {
-                    'tab:active':                        _.bind(this.onActiveTab, this)
+                    'tab:active': _.bind(this.onActiveTab, this)
                 }
             });
         },
@@ -150,23 +149,12 @@ define([
         },
 
         onClear: function (menu, item, e) {
-            if (item.value == Asc.c_oAscCleanOptions.Format && !this._state.wsProps['FormatCells'] || item.value == Asc.c_oAscCleanOptions.All && !this.api.asc_checkLockedCells())
-                this.onClearCallback(menu, item);
-            else if (item.value == Asc.c_oAscCleanOptions.Comments) {
-                this._state.wsProps['Objects'] ? Common.NotificationCenter.trigger('showerror', Asc.c_oAscError.ID.ChangeOnProtectedSheet, Asc.c_oAscError.Level.NoCritical) : this.onClearCallback(menu, item);
-            } else
-                Common.NotificationCenter.trigger('protect:check', this.onClearCallback, this, [menu, item]);
+            Common.NotificationCenter.trigger('protect:check', this.onClearCallback, this, [menu, item]);
         },
 
         onClearCallback: function (menu, item) {
-            if (this.api) {
-                if (item.value == Asc.c_oAscCleanOptions.Comments) {
-                    this.api.asc_RemoveAllComments(!this.permissions.canDeleteComments, true);// 1 param = true if remove only my comments, 2 param - remove current comments
-                } else
-                    this.api.asc_emptyCells(item.value, item.value == Asc.c_oAscCleanOptions.All && !this.permissions.canDeleteComments);
-
-                Common.NotificationCenter.trigger('edit:complete', this);
-            }
+            this.api && this.api.asc_emptyCells(item.value, false);
+            Common.NotificationCenter.trigger('edit:complete', this);
         },
 
         onSelectMarkersColorMenu: function (item, color, index) {
@@ -279,16 +267,8 @@ define([
             this.createDelayedElements();
             this._props = props;
 
-            var isChart = !!(props && props.asc_getChartProperties && props.asc_getChartProperties()),
-                chartSettings = isChart ? this.api.asc_getChartSettings(true) : null, // don't lock chart object
-                props3d = chartSettings ? chartSettings.getView3d() : null;
-
-            this._state.is3D=!!props3d;
-
             if (this.api && props){
-                if (!isChart) { //sparkline
                     this._originalProps = props;
-                    this.isChart = false;
                     this._state.SparkId = props.asc_getId();
 
                     var type = props.asc_getType(),
@@ -454,20 +434,18 @@ define([
                         }
                     }
 
-                    if (styleChanged)
+                    // if (styleChanged)
                         this.updateSparkStyles(props.asc_getStyles());
 
                     this.updateMarkerColors();
                     Common.Utils.lockControls(Common.enumLock.notLineType, this._state.SparkType !== Asc.c_oAscSparklineType.Line, {array: this.view.lockedControls});
-                }
             }
         },
 
         updateMarkerColors: function () {
-            const colorSpans = this.view.$el.find('span.color');
-
             if (!this._props) return;
 
+            const colorSpans = this.view.btnMarkerColor && this.view.btnMarkerColor.cmpEl ? this.view.btnMarkerColor.cmpEl.find('span.color') : [];
             const colors = [
                 this._props.asc_getColorHigh(),
                 this._props.asc_getColorLow(),
@@ -486,7 +464,6 @@ define([
                     $(el).css('background','#' + hex);
                 }
             });
-            const newcolorSpans = this.view.$el.find('span.color');
         },
 
         openAdvancedSettings: function() {
@@ -495,26 +472,19 @@ define([
             var me = this;
             var win, props;
             if (me.api){
-                props = (me.isChart) ? me.api.asc_getChartSettings() : me._originalProps;
+                props = me._originalProps;
                 if (props) {
                     (new SSE.Views.ChartSettingsDlg(
                         {
                             chartSettings: props,
-                            imageSettings: (me.isChart) ? me._originalProps : null,
+                            imageSettings: null,
                             sparklineStyles: me.sparklineStyles,
-                            isChart: me.isChart,
+                            isChart: false,
                             api: me.api,
                             handler: function(result, value) {
                                 if (result == 'ok') {
                                     if (me.api) {
-                                        if (me.isChart) {
-                                            if (value.imageSettings) {
-                                                value.imageSettings.asc_putChartProperties(value.chartSettings);
-                                                me.api.asc_setGraphicObjectProps(value.imageSettings);
-                                            } else
-                                                me.api.asc_applyChartSettings(value.chartSettings);
-                                        } else
-                                            me.api.asc_setSparklineGroup(me._state.SparkId, value.chartSettings);
+                                        me.api.asc_setSparklineGroup(me._state.SparkId, value.chartSettings);
                                     }
                                 }
                                 Common.NotificationCenter.trigger('edit:complete', me);
@@ -552,9 +522,7 @@ define([
                     }
 
                     stylesStore.reset(stylearray, {silent: false});
-                    var rec = this.view.cmbSparkStyle.menuPicker.store.findWhere({'id': stylesStore.at(selectedIdx<0 ? 0 : selectedIdx).get('id')});
-                    this.view.cmbSparkStyle.fieldPicker.selectRecord(rec);
-                    // this.view.cmbSparkStyle.fillComboView(stylesStore.at(selectedIdx<0 ? 0 : selectedIdx), selectedIdx>-1);
+                    this.view.cmbSparkStyle.fillComboView(stylesStore.at(selectedIdx<0 ? 0 : selectedIdx), selectedIdx>-1);
                 }
             }
         },
@@ -601,7 +569,7 @@ define([
         },
 
         onSelectionChanged: function(info) {
-            if (this.rangeSelectionMode || !this.appConfig.isEdit || !this.view) return;
+            if (this.rangeSelectionMode || !this.appConfig.isEdit || !this.view || !this.toolbar.toolbar.isTabActive('sparklinetab')) return;
             var sparkLineInfo = info.asc_getSparklineInfo();
             if (sparkLineInfo)
                 this.ChangeSettings(sparkLineInfo);
@@ -612,8 +580,10 @@ define([
         },
 
         onActiveTab: function(tab) {
-            if (tab==='sparklinetab' && this._themeChanged!==false) {
-                this.onThemeChanged();
+            if (tab==='sparklinetab') {
+                this.onSelectionChanged(this.api.asc_getCellInfo());
+                if (this._themeChanged!==false)
+                    this.onThemeChanged();
             }
         },
 
