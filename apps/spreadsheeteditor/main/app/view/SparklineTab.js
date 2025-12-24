@@ -396,7 +396,6 @@ define([
                         new Common.UI.MenuItem({
                             caption: me.textHighPoint,
                             color: '#' + Common.Utils.ThemeColor.getHexColor(me.defColor.r, me.defColor.g, me.defColor.b),
-                            menu: true,
                             value: 'high',
                             template: _.template([
                                 '<a id="<%= id %>"  tabindex="-1" type="menuitem" class="<%= options.cls %>" style="overflow: hidden; text-overflow: ellipsis;">',
@@ -408,7 +407,6 @@ define([
                         new Common.UI.MenuItem({
                             caption: me.textLowPoint,
                             color: '#' + Common.Utils.ThemeColor.getHexColor(me.defColor.r, me.defColor.g, me.defColor.b),
-                            menu: true,
                             value: 'low',
                             template: _.template([
                                 '<a id="<%= id %>"  tabindex="-1" type="menuitem" class="<%= options.cls %>" style="overflow: hidden; text-overflow: ellipsis;">',
@@ -420,7 +418,6 @@ define([
                         new Common.UI.MenuItem({
                             caption: me.textFirstPoint,
                             color: '#' + Common.Utils.ThemeColor.getHexColor(me.defColor.r, me.defColor.g, me.defColor.b),
-                            menu: true,
                             value: 'first',
                             template: _.template([
                                 '<a id="<%= id %>"  tabindex="-1" type="menuitem" class="<%= options.cls %>" style="overflow: hidden; text-overflow: ellipsis;">',
@@ -432,7 +429,6 @@ define([
                         new Common.UI.MenuItem({
                             caption: me.textLastPoint,
                             color: '#' + Common.Utils.ThemeColor.getHexColor(me.defColor.r, me.defColor.g, me.defColor.b),
-                            menu: true,
                             value: 'last',
                             template: _.template([
                                 '<a id="<%= id %>"  tabindex="-1" type="menuitem" class="<%= options.cls %>" style="overflow: hidden; text-overflow: ellipsis;">',
@@ -444,7 +440,6 @@ define([
                         new Common.UI.MenuItem({
                             caption: me.textNegativePoint,
                             color: '#' + Common.Utils.ThemeColor.getHexColor(me.defColor.r, me.defColor.g, me.defColor.b),
-                            menu: true,
                             value: 'negative',
                             template: _.template([
                                 '<a id="<%= id %>"  tabindex="-1" type="menuitem" class="<%= options.cls %>" style="overflow: hidden; text-overflow: ellipsis;">',
@@ -457,7 +452,6 @@ define([
                             caption: me.textMarkers,
                             color: '#' + Common.Utils.ThemeColor.getHexColor(me.defColor.r, me.defColor.g, me.defColor.b),
                             lock: [_set.notLineType],
-                            menu: true,
                             value: 'markers',
                             template: _.template([
                                 '<a id="<%= id %>"  tabindex="-1" type="menuitem" class="<%= options.cls %>" style="overflow: hidden; text-overflow: ellipsis;">',
