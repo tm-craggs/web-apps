@@ -300,6 +300,21 @@ define([
                         this.BorderSize = w;
                     }
                     var color = props.asc_getColorSeries();
+                    if (color) {
+                        this.SparkColor = (color.asc_getType() == Asc.c_oAscColor.COLOR_TYPE_SCHEME) ?
+                            {color: Common.Utils.ThemeColor.getHexColor(color.asc_getR(), color.asc_getG(), color.asc_getB()), effectValue: color.asc_getValue() } :
+                            Common.Utils.ThemeColor.getHexColor(color.asc_getR(), color.asc_getG(), color.asc_getB());
+
+                        var type1 = typeof(this.SparkColor),
+                            type2 = typeof(this._state.SparkColor);
+                        if ( (type1 !== type2) || (type1=='object' && (this.SparkColor.effectValue!==this._state.SparkColor.effectValue || this._state.SparkColor.color.indexOf(this.SparkColor.color)<0)) ||
+                            (type1!='object' && (this._state.SparkColor.indexOf(this.SparkColor)<0 || typeof(this.btnSparkColor.color)=='object'))) {
+
+                            Common.Utils.ThemeColor.selectPickerColorByEffect(this.SparkColor, this.mnuSparklineColorPicker);
+                            this._state.SparkColor = this.SparkColor;
+                            styleChanged = true;
+                        }
+                    }
 
                     var point = props.asc_getMarkersPoint();
                     color = props.asc_getColorMarkers();
