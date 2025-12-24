@@ -2405,6 +2405,7 @@
   "SSE.Controllers.Viewport.textHideHeadings": "Hide Headings",
   "SSE.Controllers.SparklineTab.txtPt": "pt",
   "SSE.Controllers.ChartTab.errorMaxRows": "The maximum number of data series per chart is 255.",
+  "SSE.Controllers.ChartTab.textStyle": "Style",
   "SSE.Views.AdvancedSeparatorDialog.strDecimalSeparator": "Decimal separator",
   "SSE.Views.AdvancedSeparatorDialog.strThousandsSeparator": "Thousands separator",
   "SSE.Views.AdvancedSeparatorDialog.textLabel": "Settings used to recognize numeric data",
