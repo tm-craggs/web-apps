@@ -118,7 +118,8 @@ define([
         externalChartProtected: 'external-chart-protected',
         fileMenuOpened: 'file-menu-opened',
         cantMergeShape: 'merge-shape-lock',
-        cantSave: 'cant-save'
+        cantSave: 'cant-save',
+        notLineType: 'not-line-type'
     };
     for (var key in enumLock) {
         if (enumLock.hasOwnProperty(key)) {

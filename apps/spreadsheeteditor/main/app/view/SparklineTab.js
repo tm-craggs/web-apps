@@ -395,10 +395,8 @@ define([
                         new Common.UI.MenuItem({
                             caption: me.textHighPoint,
                             color: '#' + Common.Utils.ThemeColor.getHexColor(me.defColor.r, me.defColor.g, me.defColor.b),
-                            checkable: true,
                             menu: true,
                             value: 'high',
-                            toggleGroup: 'formtab-view-role',
                             template: _.template([
                                 '<a id="<%= id %>"  tabindex="-1" type="menuitem" class="<%= options.cls %>" style="overflow: hidden; text-overflow: ellipsis;">',
                                 '<span class="color" style="background: <%= options.color %>;"></span>',
