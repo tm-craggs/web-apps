@@ -318,7 +318,7 @@ define([
                             type2 = typeof(this._state.MarkersColor);
                         if ( (type1 !== type2) || (type1=='object' && (this.MarkersColor.effectValue!==this._state.MarkersColor.effectValue || this._state.MarkersColor.color.indexOf(this.MarkersColor.color)<0)) ||
                             (type1!='object' && (this._state.MarkersColor.indexOf(this.MarkersColor)<0))) {
-
+                            Common.Utils.ThemeColor.selectPickerColorByEffect(this.MarkersColor, this.view.colorMenus[5]);
                             this._state.MarkersColor = this.MarkersColor;
                             styleChanged = true;
                         }
@@ -340,7 +340,7 @@ define([
                             type2 = typeof(this._state.HighColor);
                         if ( (type1 !== type2) || (type1=='object' && (this.HighColor.effectValue!==this._state.HighColor.effectValue || this._state.HighColor.color.indexOf(this.HighColor.color)<0)) ||
                             (type1!='object' && (this._state.HighColor.indexOf(this.HighColor)<0))) {
-
+                            Common.Utils.ThemeColor.selectPickerColorByEffect(this.HighColor, this.view.colorMenus[0]);
                             this._state.HighColor = this.HighColor;
                             styleChanged = true;
                         }
@@ -362,7 +362,7 @@ define([
                             type2 = typeof(this._state.LowColor);
                         if ( (type1 !== type2) || (type1=='object' && (this.LowColor.effectValue!==this._state.LowColor.effectValue || this._state.LowColor.color.indexOf(this.LowColor.color)<0)) ||
                             (type1!='object' && (this._state.LowColor.indexOf(this.LowColor)<0))) {
-
+                            Common.Utils.ThemeColor.selectPickerColorByEffect(this.LowColor, this.view.colorMenus[1]);
                             this._state.LowColor = this.LowColor;
                             styleChanged = true;
                         }
@@ -384,7 +384,7 @@ define([
                             type2 = typeof(this._state.FirstColor);
                         if ( (type1 !== type2) || (type1=='object' && (this.FirstColor.effectValue!==this._state.FirstColor.effectValue || this._state.FirstColor.color.indexOf(this.FirstColor.color)<0)) ||
                             (type1!='object' && (this._state.FirstColor.indexOf(this.FirstColor)<0))) {
-
+                            Common.Utils.ThemeColor.selectPickerColorByEffect(this.FirstColor, this.view.colorMenus[2]);
                             this._state.FirstColor = this.FirstColor;
                             styleChanged = true;
                         }
@@ -406,7 +406,7 @@ define([
                             type2 = typeof(this._state.LastColor);
                         if ( (type1 !== type2) || (type1=='object' && (this.LastColor.effectValue!==this._state.LastColor.effectValue || this._state.LastColor.color.indexOf(this.LastColor.color)<0)) ||
                             (type1!='object' && (this._state.LastColor.indexOf(this.LastColor)<0))) {
-
+                            Common.Utils.ThemeColor.selectPickerColorByEffect(this.LastColor, this.view.colorMenus[3]);
                             this._state.LastColor = this.LastColor;
                             styleChanged = true;
                         }
@@ -428,7 +428,7 @@ define([
                             type2 = typeof(this._state.NegativeColor);
                         if ( (type1 !== type2) || (type1=='object' && (this.NegativeColor.effectValue!==this._state.NegativeColor.effectValue || this._state.NegativeColor.color.indexOf(this.NegativeColor.color)<0)) ||
                             (type1!='object' && (this._state.NegativeColor.indexOf(this.NegativeColor)<0))) {
-
+                            Common.Utils.ThemeColor.selectPickerColorByEffect(this.NegativeColor, this.view.colorMenus[4]);
                             this._state.NegativeColor = this.NegativeColor;
                             styleChanged = true;
                         }

@@ -162,6 +162,7 @@ define([
                 this.defColor = {r: 255, g: 239, b: 191, Auto: false};
                 Common.UI.BaseView.prototype.initialize.call(this);
 
+                this.colorMenus = [];
                 this.lockedControls = [];
 
                 var me = this,
@@ -538,6 +539,7 @@ define([
                         colorsMenu.on('select', function (item, color) {
                             me.fireEvent('sparkline:markerscolor', [item, color, index])
                         });
+                        me.colorMenus.push(colorsMenu)
                     });
                     setEvents.call(me);
                 });
