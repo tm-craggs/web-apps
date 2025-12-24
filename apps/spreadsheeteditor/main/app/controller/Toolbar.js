@@ -3101,6 +3101,8 @@ define([
                 this._state.clrshd_asccolor = color;
             }
 
+            if (in_chart || in_sparkline) return;
+
             if (!toolbar.mode.isEditDiagram)
             {
 //                (coauth_disable !== toolbar.btnClearStyle.isDisabled()) && toolbar.btnClearStyle.setDisabled(coauth_disable);

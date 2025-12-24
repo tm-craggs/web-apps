@@ -407,10 +407,8 @@ define([
                         new Common.UI.MenuItem({
                             caption: me.textLowPoint,
                             color: '#' + Common.Utils.ThemeColor.getHexColor(me.defColor.r, me.defColor.g, me.defColor.b),
-                            checkable: true,
                             menu: true,
                             value: 'low',
-                            toggleGroup: 'formtab-view-role',
                             template: _.template([
                                 '<a id="<%= id %>"  tabindex="-1" type="menuitem" class="<%= options.cls %>" style="overflow: hidden; text-overflow: ellipsis;">',
                                 '<span class="color" style="background: <%= options.color %>;"></span>',
@@ -421,10 +419,8 @@ define([
                         new Common.UI.MenuItem({
                             caption: me.textFirstPoint,
                             color: '#' + Common.Utils.ThemeColor.getHexColor(me.defColor.r, me.defColor.g, me.defColor.b),
-                            checkable: true,
                             menu: true,
                             value: 'first',
-                            toggleGroup: 'formtab-view-role',
                             template: _.template([
                                 '<a id="<%= id %>"  tabindex="-1" type="menuitem" class="<%= options.cls %>" style="overflow: hidden; text-overflow: ellipsis;">',
                                 '<span class="color" style="background: <%= options.color %>;"></span>',
@@ -435,10 +431,8 @@ define([
                         new Common.UI.MenuItem({
                             caption: me.textLastPoint,
                             color: '#' + Common.Utils.ThemeColor.getHexColor(me.defColor.r, me.defColor.g, me.defColor.b),
-                            checkable: true,
                             menu: true,
                             value: 'last',
-                            toggleGroup: 'formtab-view-role',
                             template: _.template([
                                 '<a id="<%= id %>"  tabindex="-1" type="menuitem" class="<%= options.cls %>" style="overflow: hidden; text-overflow: ellipsis;">',
                                 '<span class="color" style="background: <%= options.color %>;"></span>',
@@ -449,10 +443,8 @@ define([
                         new Common.UI.MenuItem({
                             caption: me.textNegativePoint,
                             color: '#' + Common.Utils.ThemeColor.getHexColor(me.defColor.r, me.defColor.g, me.defColor.b),
-                            checkable: true,
                             menu: true,
                             value: 'negative',
-                            toggleGroup: 'formtab-view-role',
                             template: _.template([
                                 '<a id="<%= id %>"  tabindex="-1" type="menuitem" class="<%= options.cls %>" style="overflow: hidden; text-overflow: ellipsis;">',
                                 '<span class="color" style="background: <%= options.color %>; vertical-align: middle;"></span>',
@@ -463,11 +455,9 @@ define([
                         this.markerColor = new Common.UI.MenuItem({
                             caption: me.textMarkers,
                             color: '#' + Common.Utils.ThemeColor.getHexColor(me.defColor.r, me.defColor.g, me.defColor.b),
-                            checkable: true,
                             lock: [_set.notLineType],
                             menu: true,
                             value: 'markers',
-                            toggleGroup: 'formtab-view-role',
                             template: _.template([
                                 '<a id="<%= id %>"  tabindex="-1" type="menuitem" class="<%= options.cls %>" style="overflow: hidden; text-overflow: ellipsis;">',
                                 '<span class="color" style="background: <%= options.color %>;"></span>',
