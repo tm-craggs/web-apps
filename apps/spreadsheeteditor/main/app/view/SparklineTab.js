@@ -133,7 +133,7 @@ define([
                 me.fireEvent('sparkline:type', [2]);
             });
             this.btnSparklineColor.menu.on('item:click', function (menu, item) {
-                me.fireEvent('sparkline:addnewcolor', [menu, item])
+                me.fireEvent('sparkline:addnewcolor', [menu, item, null, true])
             });
             this.btnClear.menu.on('item:click', function (menu, item, e) {
                 me.fireEvent('sparkline:clear', [menu, item, e])
@@ -519,15 +519,15 @@ define([
                             ]
                         });
 
-                        subMenu.on('item:click', function (menu, color) {
-                            me.fireEvent('sparkline:addnewcolor', [menu, color])
-                        })
                         item.setMenu(subMenu);
 
                         var colorsMenu = new Common.UI.ThemeColorPalette({
                             el: $(`#sparkline-markers-menu-picker${index}`),
                             outerMenu: {menu: item.menu, index: 0}
                         });
+                        subMenu.on('item:click', function (menu, color) {
+                            me.fireEvent('sparkline:addnewcolor', [menu, color, colorsMenu])
+                        })
                         item.menu.setInnerMenu([{menu: colorsMenu, index: 0}]);
                         colorsMenu.updateColors(Common.Utils.ThemeColor.getEffectColors(), Common.Utils.ThemeColor.getStandartColors());
                         colorsMenu.on('select', function (item, color) {

@@ -191,10 +191,16 @@ define([
             Common.NotificationCenter.trigger('edit:complete', this);
         },
 
-        onSelectSparklineColorMenu: function (menu, item) {
-            if (item.value === 1 && this.mnuSparklineColorPicker) {
-                this.mnuSparklineColorPicker.addNewColor();
-            };
+        onSelectSparklineColorMenu: function (menu, item, picker, sparkColor) {
+            if (!sparkColor) {
+                if (item.value === 1 && picker) {
+                    picker.addNewColor();
+                };
+            } else {
+                if (item.value === 1 && this.mnuSparklineColorPicker) {
+                    this.mnuSparklineColorPicker.addNewColor();
+                };
+            }
         },
 
         onSelectSparkType: function (type) {
@@ -308,7 +314,7 @@ define([
                         var type1 = typeof(this.SparkColor),
                             type2 = typeof(this._state.SparkColor);
                         if ( (type1 !== type2) || (type1=='object' && (this.SparkColor.effectValue!==this._state.SparkColor.effectValue || this._state.SparkColor.color.indexOf(this.SparkColor.color)<0)) ||
-                            (type1!='object' && (this._state.SparkColor.indexOf(this.SparkColor)<0 || typeof(this.btnSparkColor.color)=='object'))) {
+                            (type1!='object' && (this._state.SparkColor.indexOf(this.SparkColor)<0))) {
 
                             Common.Utils.ThemeColor.selectPickerColorByEffect(this.SparkColor, this.mnuSparklineColorPicker);
                             this._state.SparkColor = this.SparkColor;
