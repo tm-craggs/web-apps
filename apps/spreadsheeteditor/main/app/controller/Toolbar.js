@@ -3101,7 +3101,7 @@ define([
                 this._state.clrshd_asccolor = color;
             }
 
-            if (in_chart || in_sparkline) return;
+            if (in_chart) return;
 
             if (!toolbar.mode.isEditDiagram)
             {
