@@ -334,11 +334,11 @@ define([], function () {
         },
 
         getFocusedComponents: function() {
-            return [this.spnX, this.btnLeft, this.btnRight, this.spnY, this.btnUp, this.btnDown, this.spnPerspective,
+            return [this.btnRight, this.btnLeft, this.spnX, this.spnY, this.btnUp, this.btnDown, this.spnPerspective,
                 this.btnNarrow, this.btnWiden, this.chRightAngle, this.chAutoscale, this.spn3DDepth, this.spn3DHeight, this.linkDefRotation].concat(this.getFooterButtons());
         },
         getDefaultFocusableComponent: function () {
-            return this.spnX;
+            return this.btnRight;
         },
         onPrimary: function(event) {
             this._handleInput('ok');
