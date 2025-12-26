@@ -82,6 +82,7 @@ define([
         cantPrint:      'cant-print',
         multiselect:    'is-multiselect',
         cantHyperlink:  'cant-hyperlink',
+        sparkLocked:  'spark-locked',
         commentLock:    'can-comment',
         cantModifyFilter: 'cant-filter',
         disableOnStart: 'on-start',
@@ -118,7 +119,8 @@ define([
         fileMenuOpened: 'file-menu-opened',
         cantMergeShape: 'merge-shape-lock',
         cantSave: 'cant-save',
-        macrosStopped: 'macros-stopped'
+        macrosStopped: 'macros-stopped',
+        notLineType: 'not-line-type'
     };
     for (var key in enumLock) {
         if (enumLock.hasOwnProperty(key)) {
