@@ -73,25 +73,25 @@ define([], function () {
                         '<tr >'+
                             '<td style="padding-bottom: 8px">'+
                                 '<label class="fixed" style="margin-top: 3px;width: 83px;">' + t.txtXRotation + '</label>'+
-                                '<div id="id-chart-btn-x-right" style="display: inline-block;" class="float-right margin-left-4"></div>'+
-                                '<div id="id-chart-btn-x-left" style="display: inline-block;" class="float-right margin-left-4"></div>'+
-                                '<div id="id-chart-spin-x" style="display: inline-block;" class="float-right"></div>'+
+                                '<div id="id-chart-spin-x" style="display: inline-block;"></div>'+
+                                '<div id="id-chart-btn-x-left" style="display: inline-block;" class="margin-left-4"></div>'+
+                                '<div id="id-chart-btn-x-right" style="display: inline-block;" class=" margin-left-4"></div>'+
                             '</td>'+
                         '</tr>'+
                         '<tr>'+
                             '<td style="padding-bottom: 8px">'+
                                 '<label class="fixed" style="margin-top: 3px;width: 83px;">' + t.txtYRotation + '</label>'+
-                                '<div id="id-chart-btn-y-down" style="display: inline-block;" class="float-right margin-left-4"></div>'+
-                                '<div id="id-chart-btn-y-up" style="display: inline-block;" class="float-right margin-left-4"></div>'+
-                                '<div id="id-chart-spin-y" style="display: inline-block;" class="float-right"></div>'+
+                                '<div id="id-chart-spin-y" style="display: inline-block;"></div>'+
+                                '<div id="id-chart-btn-y-up" style="display: inline-block;" class="margin-left-4"></div>'+
+                                '<div id="id-chart-btn-y-down" style="display: inline-block;" class="margin-left-4"></div>'+
                             '</td>'+
                         '</tr>'+
                         '<tr>'+
                             '<td style="padding-bottom: 8px">'+
                                 '<label class="fixed" style="margin-top: 3px;width: 83px;">' + t.txtPerspective + '</label>'+
-                                '<div id="id-chart-btn-widen" style="display: inline-block;" class="float-right margin-left-4"></div>'+
-                                '<div id="id-chart-btn-narrow" style="display: inline-block;" class="float-right margin-left-4"></div>'+
-                                '<div id="id-chart-spin-persp" style="display: inline-block;" class="float-right"></div>'+
+                                '<div id="id-chart-spin-persp" style="display: inline-block;"></div>'+
+                                '<div id="id-chart-btn-narrow" style="display: inline-block;" class="margin-left-4"></div>'+
+                                '<div id="id-chart-btn-widen" style="display: inline-block;" class="margin-left-4"></div>'+
                             '</td>'+
                         '</tr>'+
                         '<tr>'+
@@ -334,11 +334,11 @@ define([], function () {
         },
 
         getFocusedComponents: function() {
-            return [this.btnRight, this.btnLeft, this.spnX, this.spnY, this.btnUp, this.btnDown, this.spnPerspective,
+            return [this.spnX, this.btnRight, this.btnLeft, this.spnY, this.btnUp, this.btnDown, this.spnPerspective,
                 this.btnNarrow, this.btnWiden, this.chRightAngle, this.chAutoscale, this.spn3DDepth, this.spn3DHeight].concat(this.getFooterButtons());
         },
         getDefaultFocusableComponent: function () {
-            return this.btnRight;
+            return this.spnX;
         },
         onPrimary: function(event) {
             this._handleInput('ok');
