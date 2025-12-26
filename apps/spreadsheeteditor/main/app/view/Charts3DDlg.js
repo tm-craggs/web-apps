@@ -335,7 +335,7 @@ define([], function () {
 
         getFocusedComponents: function() {
             return [this.btnRight, this.btnLeft, this.spnX, this.spnY, this.btnUp, this.btnDown, this.spnPerspective,
-                this.btnNarrow, this.btnWiden, this.chRightAngle, this.chAutoscale, this.spn3DDepth, this.spn3DHeight, this.linkDefRotation].concat(this.getFooterButtons());
+                this.btnNarrow, this.btnWiden, this.chRightAngle, this.chAutoscale, this.spn3DDepth, this.spn3DHeight].concat(this.getFooterButtons());
         },
         getDefaultFocusableComponent: function () {
             return this.btnRight;
