@@ -137,8 +137,6 @@ define([], function () {
                 cls: 'btn-toolbar',
                 iconCls: 'toolbar__icon btn-rotate-270',
                 hint: this.textLeft,
-                dataHint: '1',
-                dataHintDirection: 'top'
             });
             this.btnLeft.on('click', _.bind(function() {
                 this.spnX.setValue(Math.ceil((this.spnX.getNumberValue() - 10)/10)*10);
@@ -149,8 +147,6 @@ define([], function () {
                 cls: 'btn-toolbar',
                 iconCls: 'toolbar__icon btn-rotate-90',
                 hint: this.textRight,
-                dataHint: '1',
-                dataHintDirection: 'top'
             });
             this.btnRight.on('click', _.bind(function() {
                 this.spnX.setValue(Math.floor((this.spnX.getNumberValue() + 10)/10)*10);
@@ -164,13 +160,9 @@ define([], function () {
                 value: '20 °',
                 maxValue: 359.9,
                 minValue: 0,
-                dataHint: '1',
-                dataHintDirection: 'bottom',
-                dataHintOffset: 'big',
                 ariaLabel: this.textX
             });
             this.spnX.on('change', _.bind(this.onXRotation, this));
-            this.spnX.on('inputleave', function(){ Common.NotificationCenter.trigger('edit:complete', me);});
 
             this.spnY = new Common.UI.MetricSpinner({
                 el: $('#id-chart-spin-y'),
@@ -180,21 +172,15 @@ define([], function () {
                 value: '15 °',
                 maxValue: 90,
                 minValue: -90,
-                dataHint: '1',
-                dataHintDirection: 'bottom',
-                dataHintOffset: 'big',
                 ariaLabel: this.textY
             });
             this.spnY.on('change', _.bind(this.onYRotation, this));
-            this.spnY.on('inputleave', function(){ Common.NotificationCenter.trigger('edit:complete', me);});
 
             this.btnUp = new Common.UI.Button({
                 parentEl: $('#id-chart-btn-y-up'),
                 cls: 'btn-toolbar',
                 iconCls: 'toolbar__icon btn-rotate-y-clockwise',
                 hint: this.textUp,
-                dataHint: '1',
-                dataHintDirection: 'top'
             });
             this.btnUp.on('click', _.bind(function() {
                 this.spnY.setValue(Math.ceil((this.spnY.getNumberValue() - 10)/10)*10);
@@ -205,8 +191,6 @@ define([], function () {
                 cls: 'btn-toolbar',
                 iconCls: 'toolbar__icon btn-rotate-y-counterclockwise',
                 hint: this.textDown,
-                dataHint: '1',
-                dataHintDirection: 'top'
             });
             this.btnDown.on('click', _.bind(function() {
                 this.spnY.setValue(Math.floor((this.spnY.getNumberValue() + 10)/10)*10);
@@ -220,21 +204,15 @@ define([], function () {
                 value: '0 °',
                 maxValue: 100,
                 minValue: 0.1,
-                dataHint: '1',
-                dataHintDirection: 'bottom',
-                dataHintOffset: 'big',
                 ariaLabel: this.textPerspective
             });
             this.spnPerspective.on('change', _.bind(this.onPerspective, this));
-            this.spnPerspective.on('inputleave', function(){ Common.NotificationCenter.trigger('edit:complete', me);});
 
             this.btnNarrow = new Common.UI.Button({
                 parentEl: $('#id-chart-btn-narrow'),
                 cls: 'btn-toolbar',
                 iconCls: 'toolbar__icon btn-rotate-up',
                 hint: this.textNarrow,
-                dataHint: '1',
-                dataHintDirection: 'top'
             });
             this.btnNarrow.on('click', _.bind(function() {
                 this.spnPerspective.setValue(Math.ceil((this.spnPerspective.getNumberValue() - 5)/5)*5);
@@ -245,8 +223,6 @@ define([], function () {
                 cls: 'btn-toolbar',
                 iconCls: 'toolbar__icon btn-rotate-down',
                 hint: this.textWiden,
-                dataHint: '1',
-                dataHintDirection: 'top'
             });
             this.btnWiden.on('click', _.bind(function() {
                 this.spnPerspective.setValue(Math.floor((this.spnPerspective.getNumberValue() + 5)/5)*5);
@@ -284,13 +260,9 @@ define([], function () {
                 value: '0 %',
                 maxValue: 2000,
                 minValue: 0,
-                dataHint: '1',
-                dataHintDirection: 'bottom',
-                dataHintOffset: 'big',
                 ariaLabel: this.text3dDepth
             });
             this.spn3DDepth.on('change', _.bind(this.on3DDepth, this));
-            this.spn3DDepth.on('inputleave', function(){ Common.NotificationCenter.trigger('edit:complete', me);});
 
             this.spn3DHeight = new Common.UI.MetricSpinner({
                 el: $('#id-chart-spin-3d-height'),
@@ -300,13 +272,9 @@ define([], function () {
                 value: '50 %',
                 maxValue: 500,
                 minValue: 5,
-                dataHint: '1',
-                dataHintDirection: 'bottom',
-                dataHintOffset: 'big',
                 ariaLabel: this.text3dHeight
             });
             this.spn3DHeight.on('change', _.bind(this.on3DHeight, this));
-            this.spn3DHeight.on('inputleave', function(){ Common.NotificationCenter.trigger('edit:complete', me);});
 
             this.linkDefRotation = $('#id-chart-def-rotate-link');
             this.linkDefRotation.on('click', _.bind(this.onDefRotation, this));
@@ -323,11 +291,6 @@ define([], function () {
             this.chAutoscale.setValue(me.Height3d===null, true);
             (me.Height3d!==null) && this.spn3DHeight.setValue(me.Height3d, true);
             this.spn3DHeight.setDisabled(me.Height3d===null);
-
-            this.btnOk = _.find(this.getFooterButtons(), function (item) {
-                return (item.$el && item.$el.find('.primary').addBack().filter('.primary').length>0);
-            }) || new Common.UI.Button({ el: this.$window.find('.primary') });
-            this.afterRender();
         },
 
         onXRotation: function(field, newValue, oldValue, eOpts){
@@ -371,13 +334,11 @@ define([], function () {
         },
 
         getFocusedComponents: function() {
-            return [this.btnLeft, this.btnRight].concat(this.getFooterButtons());
+            return [this.spnX, this.btnLeft, this.btnRight, this.spnY, this.btnUp, this.btnDown, this.spnPerspective,
+                this.btnNarrow, this.btnWiden, this.chRightAngle, this.chAutoscale, this.spn3DDepth, this.spn3DHeight, this.linkDefRotation].concat(this.getFooterButtons());
         },
         getDefaultFocusableComponent: function () {
             return this.spnX;
-        },
-        afterRender: function() {
-            this._setDefaults(this.props);
         },
         onPrimary: function(event) {
             this._handleInput('ok');
@@ -388,21 +349,10 @@ define([], function () {
         },
         _handleInput: function(state) {
             var me = this;
-            if (state === 'ok' && this.btnOk.isDisabled())
-                return;
             if (this.handler) {
                 this.handler.call(this, state, me.oView3D, me.chartProps);
             }
             this.close();
-        },
-        _setDefaults: function (props) {
-            if (props) {
-            }
-        },
-        getSettings: function() {
-        },
-        SetDisabled: function(disabled) {
-            this.btnOk.setDisabled(disabled);
         },
     }, SSE.Views.Charts3DDlg || {}));
 });
