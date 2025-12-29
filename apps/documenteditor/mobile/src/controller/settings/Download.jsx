@@ -31,7 +31,7 @@ class DownloadController extends Component {
         const options = new Asc.asc_CDownloadOptions(format);
         options.asc_setIsSaveAs(isNeedDownload);
        
-        if(/^pdf|xps|oxps|djvu$/.test(fileType)) {
+        if(/^pdf|xps|oxps|djvu|docx$/.test(fileType)) {
             this.closeModal();
 
             if (format === Asc.c_oAscFileType.DJVU) {
