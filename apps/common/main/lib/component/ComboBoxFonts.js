@@ -483,9 +483,14 @@ define([
                     this._isMouseDownMenu = false; return;
                 }
 
-                var val = $(e.target).val(),
+                var val = $(e.target).val().trim(),
                     record = {};
 
+                if(val != $(e.target).val()){
+                    $(e.target).val(val);
+                    this.selectCandidate(true);
+                }
+                
                 if (this.lastValue === val && !(extra && extra.reapply)) {
                     if (extra && extra.onkeydown)
                         this.trigger('combo:blur', this, e);
