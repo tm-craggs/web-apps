@@ -31,7 +31,7 @@ class DownloadController extends Component {
         const options = new Asc.asc_CDownloadOptions(format);
         options.asc_setIsSaveAs(isNeedDownload);
        
-        if(/^pdf|xps|oxps|djvu|docx$/.test(fileType)) {
+        if(/^pdf|xps|oxps|djvu$/.test(fileType)) {
             this.closeModal();
 
             if (format === Asc.c_oAscFileType.DJVU) {
@@ -80,7 +80,29 @@ class DownloadController extends Component {
                 }).open();
             }
         } else {
-            api.asc_DownloadAs(options);
+            if (format === Asc.c_oAscFileType.TXT || format === Asc.c_oAscFileType.RTF) {
+                f7.dialog.create({
+                    title: _t.notcriticalErrorTitle,
+                    text: (format === Asc.c_oAscFileType.TXT) ? _t.textDownloadTxt : _t.textDownloadRtf,
+                    buttons: [
+                        {
+                            text: _t.textCancel
+                        },
+                        {
+                            text: _t.textOk,
+                            onClick: () => {
+                                if (format === Asc.c_oAscFileType.TXT) {
+                                    const advOptions = api.asc_getAdvancedOptions();
+                                    Common.Notifications.trigger('openEncoding', Asc.c_oAscAdvancedOptionsID.TXT, advOptions, 2, options);
+                                } else {
+                                    api.asc_DownloadAs(options);
+                                }
+                            }
+                        }
+                    ],
+                }).open();
+            } else
+                api.asc_DownloadAs(options);
         }
     }
 
