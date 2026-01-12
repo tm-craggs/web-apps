@@ -82,7 +82,7 @@ define([
                 me.options.height = me.options.itemSize* this.options.minRows;
                 var rootEl = this.cmpEl;
 
-                me.borderColor = Common.Utils.isIE ?'#7f7f7f' :Common.UI.Themes.currentThemeColor('--chb-border-normal');
+                me.borderColor = Common.Utils.isIE ?'#000000' :Common.UI.Themes.currentThemeColor('--canvas-high-contrast');
                 me.fillColor = Common.Utils.isIE ?'#fff' :Common.UI.Themes.currentThemeColor('--background-normal');
                 me.borderColorHighlighted = Common.Utils.isIE ?'#92B7F0' :Common.UI.Themes.currentThemeColor('--border-preview-hover');
                 me.fillColorHighlighted = Common.Utils.isIE ?'#4473CA' :Common.UI.Themes.currentThemeColor('--background-accent-button');
@@ -163,7 +163,7 @@ define([
 
 
             changeColors: function (){
-                this.borderColor = Common.UI.Themes.currentThemeColor('--chb-border-normal');
+                this.borderColor = Common.UI.Themes.currentThemeColor('--canvas-high-contrast');
                 this.fillColor = Common.UI.Themes.currentThemeColor('--background-normal');
                 this.borderColorHighlighted = Common.UI.Themes.currentThemeColor('--border-preview-hover');
                 this.fillColorHighlighted = Common.UI.Themes.currentThemeColor('--background-accent-button');
