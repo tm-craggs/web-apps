@@ -30,16 +30,17 @@ class DownloadController extends Component {
         const isNeedDownload = !!format;
         const options = new Asc.asc_CDownloadOptions(format);
         options.asc_setIsSaveAs(isNeedDownload);
+        const isPdfLike = /^pdf|xps|oxps|djvu$/.test(fileType);
 
-        if(/^pdf|xps|oxps|djvu$/.test(fileType)) 
+        if(isPdfLike) 
             this.closeModal();
 
-        if (format === Asc.c_oAscFileType.DJVU && /^pdf|xps|oxps|djvu$/.test(fileType)) { 
+        if (format === Asc.c_oAscFileType.DJVU && isPdfLike) { 
             api.asc_DownloadOrigin(options);
         } else if(format === Asc.c_oAscFileType.PDF || format === Asc.c_oAscFileType.PDFA || format === Asc.c_oAscFileType.JPG || format === Asc.c_oAscFileType.PNG) {
             api.asc_DownloadAs(options);
         } else if (format === Asc.c_oAscFileType.TXT || format === Asc.c_oAscFileType.RTF) {
-            if(/^pdf|xps|oxps|djvu$/.test(fileType)) 
+            if(isPdfLike) 
                 options.asc_setTextParams(new AscCommon.asc_CTextParams(Asc.c_oAscTextAssociation.PlainLine));
 
             f7.dialog.create({
@@ -62,7 +63,7 @@ class DownloadController extends Component {
                     }
                 ],
             }).open();
-        } else if(/^pdf|xps|oxps|djvu$/.test(fileType)) {
+        } else if(isPdfLike) {
             f7.dialog.create({
                 title: _t.notcriticalErrorTitle,
                 text: t('Main.warnDownloadAsPdf').replaceAll('{0}', fileType.toUpperCase()), 
