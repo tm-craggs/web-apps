@@ -486,7 +486,7 @@ define([
                 var val = $(e.target).val(),
                     record = {};
 
-                if(!this._selectedItem && (val !== $(e.target).val().trim())) {
+                if(!this._selectedItem && val !== $(e.target).val().trim()) {
                     val = $(e.target).val().trim();
                     $(e.target).val(val);
                     this.selectCandidate(true);
