@@ -34,9 +34,8 @@ class DownloadController extends Component {
         if(/^pdf|xps|oxps|djvu$/.test(fileType)) 
             this.closeModal();
 
-        if (format === Asc.c_oAscFileType.DJVU) {
-            if(/^pdf|xps|oxps|djvu$/.test(fileType)) 
-                api.asc_DownloadOrigin(options);
+        if (format === Asc.c_oAscFileType.DJVU && /^pdf|xps|oxps|djvu$/.test(fileType)) { 
+            api.asc_DownloadOrigin(options);
         } else if(format === Asc.c_oAscFileType.PDF || format === Asc.c_oAscFileType.PDFA || format === Asc.c_oAscFileType.JPG || format === Asc.c_oAscFileType.PNG) {
         } else if (format === Asc.c_oAscFileType.TXT || format === Asc.c_oAscFileType.RTF) {
             if(/^pdf|xps|oxps|djvu$/.test(fileType)) 
@@ -62,8 +61,7 @@ class DownloadController extends Component {
                     }
                 ],
             }).open();
-        } else {
-            if(/^pdf|xps|oxps|djvu$/.test(fileType))
+        } else if(/^pdf|xps|oxps|djvu$/.test(fileType)) {
                 f7.dialog.create({
                     title: _t.notcriticalErrorTitle,
                     text: t('Main.warnDownloadAsPdf').replaceAll('{0}', fileType.toUpperCase()), 
@@ -81,9 +79,7 @@ class DownloadController extends Component {
                     ],
                 }).open();
         }
-
-        if(!(/^pdf|xps|oxps|djvu$/.test(fileType)) && format !== Asc.c_oAscFileType.TXT && format !== Asc.c_oAscFileType.RTF) 
-            this.closeModal();
+            api.asc_DownloadAs(options);
 
     }
 
