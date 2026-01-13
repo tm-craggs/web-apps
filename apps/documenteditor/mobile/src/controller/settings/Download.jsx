@@ -30,38 +30,40 @@ class DownloadController extends Component {
         const isNeedDownload = !!format;
         const options = new Asc.asc_CDownloadOptions(format);
         options.asc_setIsSaveAs(isNeedDownload);
-       
-        if(/^pdf|xps|oxps|djvu$/.test(fileType)) {
+
+        if(/^pdf|xps|oxps|djvu$/.test(fileType)) 
             this.closeModal();
 
-            if (format === Asc.c_oAscFileType.DJVU) {
+        if (format === Asc.c_oAscFileType.DJVU) {
+            if(/^pdf|xps|oxps|djvu$/.test(fileType)) 
                 api.asc_DownloadOrigin(options);
-            } else if(format === Asc.c_oAscFileType.PDF || format === Asc.c_oAscFileType.PDFA || format === Asc.c_oAscFileType.JPG || format === Asc.c_oAscFileType.PNG) {
-                api.asc_DownloadAs(options);
-            } else if (format === Asc.c_oAscFileType.TXT || format === Asc.c_oAscFileType.RTF) {
+        } else if(format === Asc.c_oAscFileType.PDF || format === Asc.c_oAscFileType.PDFA || format === Asc.c_oAscFileType.JPG || format === Asc.c_oAscFileType.PNG) {
+        } else if (format === Asc.c_oAscFileType.TXT || format === Asc.c_oAscFileType.RTF) {
+            if(/^pdf|xps|oxps|djvu$/.test(fileType)) 
                 options.asc_setTextParams(new AscCommon.asc_CTextParams(Asc.c_oAscTextAssociation.PlainLine));
 
-                f7.dialog.create({
-                    title: _t.notcriticalErrorTitle,
-                    text: (format === Asc.c_oAscFileType.TXT) ? _t.textDownloadTxt : _t.textDownloadRtf,
-                    buttons: [
-                        {
-                            text: _t.textCancel
-                        },
-                        {
-                            text: _t.textOk,
-                            onClick: () => {
-                                if (format === Asc.c_oAscFileType.TXT) {
-                                    const advOptions = api.asc_getAdvancedOptions();
-                                    Common.Notifications.trigger('openEncoding', Asc.c_oAscAdvancedOptionsID.TXT, advOptions, 2, options);
-                                } else {
-                                    api.asc_DownloadAs(options);
-                                }
+            f7.dialog.create({
+                title: _t.notcriticalErrorTitle,
+                text: (format === Asc.c_oAscFileType.TXT) ? _t.textDownloadTxt : _t.textDownloadRtf,
+                buttons: [
+                    {
+                        text: _t.textCancel
+                    },
+                    {
+                        text: _t.textOk,
+                        onClick: () => {
+                            if (format === Asc.c_oAscFileType.TXT) {
+                                const advOptions = api.asc_getAdvancedOptions();
+                                Common.Notifications.trigger('openEncoding', Asc.c_oAscAdvancedOptionsID.TXT, advOptions, 2, options);
+                            } else {
+                                api.asc_DownloadAs(options);
                             }
                         }
-                    ],
-                }).open();
-            } else {
+                    }
+                ],
+            }).open();
+        } else {
+            if(/^pdf|xps|oxps|djvu$/.test(fileType))
                 f7.dialog.create({
                     title: _t.notcriticalErrorTitle,
                     text: t('Main.warnDownloadAsPdf').replaceAll('{0}', fileType.toUpperCase()), 
@@ -78,32 +80,11 @@ class DownloadController extends Component {
                         }
                     ],
                 }).open();
-            }
-        } else {
-            if (format === Asc.c_oAscFileType.TXT || format === Asc.c_oAscFileType.RTF) {
-                f7.dialog.create({
-                    title: _t.notcriticalErrorTitle,
-                    text: (format === Asc.c_oAscFileType.TXT) ? _t.textDownloadTxt : _t.textDownloadRtf,
-                    buttons: [
-                        {
-                            text: _t.textCancel
-                        },
-                        {
-                            text: _t.textOk,
-                            onClick: () => {
-                                if (format === Asc.c_oAscFileType.TXT) {
-                                    const advOptions = api.asc_getAdvancedOptions();
-                                    Common.Notifications.trigger('openEncoding', Asc.c_oAscAdvancedOptionsID.TXT, advOptions, 2, options);
-                                } else {
-                                    api.asc_DownloadAs(options);
-                                }
-                            }
-                        }
-                    ],
-                }).open();
-            } else
-                api.asc_DownloadAs(options);
         }
+
+        if(!(/^pdf|xps|oxps|djvu$/.test(fileType)) && format !== Asc.c_oAscFileType.TXT && format !== Asc.c_oAscFileType.RTF) 
+            this.closeModal();
+
     }
 
     render() {
