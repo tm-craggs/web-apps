@@ -37,6 +37,7 @@ class DownloadController extends Component {
         if (format === Asc.c_oAscFileType.DJVU && /^pdf|xps|oxps|djvu$/.test(fileType)) { 
             api.asc_DownloadOrigin(options);
         } else if(format === Asc.c_oAscFileType.PDF || format === Asc.c_oAscFileType.PDFA || format === Asc.c_oAscFileType.JPG || format === Asc.c_oAscFileType.PNG) {
+            api.asc_DownloadAs(options);
         } else if (format === Asc.c_oAscFileType.TXT || format === Asc.c_oAscFileType.RTF) {
             if(/^pdf|xps|oxps|djvu$/.test(fileType)) 
                 options.asc_setTextParams(new AscCommon.asc_CTextParams(Asc.c_oAscTextAssociation.PlainLine));
@@ -62,23 +63,23 @@ class DownloadController extends Component {
                 ],
             }).open();
         } else if(/^pdf|xps|oxps|djvu$/.test(fileType)) {
-                f7.dialog.create({
-                    title: _t.notcriticalErrorTitle,
-                    text: t('Main.warnDownloadAsPdf').replaceAll('{0}', fileType.toUpperCase()), 
-                    buttons: [
-                        {
-                            text: _t.textCancel
-                        },
-                        {
-                            text: _t.textOk,
-                            onClick: () => {
-                                options.asc_setTextParams(new AscCommon.asc_CTextParams(Asc.c_oAscTextAssociation.PlainLine));
-                                api.asc_DownloadAs(options);
-                            }
+            f7.dialog.create({
+                title: _t.notcriticalErrorTitle,
+                text: t('Main.warnDownloadAsPdf').replaceAll('{0}', fileType.toUpperCase()), 
+                buttons: [
+                    {
+                        text: _t.textCancel
+                    },
+                    {
+                        text: _t.textOk,
+                        onClick: () => {
+                            options.asc_setTextParams(new AscCommon.asc_CTextParams(Asc.c_oAscTextAssociation.PlainLine));
+                            api.asc_DownloadAs(options);
                         }
-                    ],
-                }).open();
-        }
+                    }
+                ],
+            }).open();
+        } else
             api.asc_DownloadAs(options);
 
     }
